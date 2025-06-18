@@ -444,9 +444,17 @@ footer {
   .description {
     font-size: 1.1rem;
   }
+
+  #more_btn{
+    display: none;
+  }
+
+  .education-section{
+    margin-top: 0;
+  }
   .education-title {
     font-size: 1.8rem;
-    margin-top: 1.4rem;
+    margin-top: 0;
     margin-bottom: .2rem;
   }
 
