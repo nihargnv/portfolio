@@ -1,9 +1,11 @@
+/* Existing styles (unchanged) */
 @import url("https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 :root {
   --bg-color: #1f2937;
   --primary-color: hsl(217, 91%, 60%);
   --secondary-color: #9ca3af;
+  --card-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -15,7 +17,6 @@
 body {
   background-color: #1f2937;
   font-family: "Poppins", sans-serif;
-
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
@@ -40,6 +41,7 @@ body {
 .nav-links li {
   list-style: none;
 }
+
 .nav-links a {
   text-decoration: none;
   color: #99a5b9;
@@ -66,11 +68,72 @@ body {
   color: inherit;
 }
 
+/* Mobile Navbar Styles */
+.navbar-phone {
+  display: none;
+  background-color: #0c1527;
+  padding: 10px 20px;
+  height: 60px;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-phone .logo {
+  margin-left: 0;
+}
+
+.hamburger {
+  font-size: 30px;
+  color: #f3f4f6;
+  cursor: pointer;
+}
+
+.nav-links-phone {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background-color: #0c1527;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-links-phone.active {
+  display: flex;
+  transform: translateX(0);
+}
+
+.nav-links-phone li {
+  list-style: none;
+}
+
+.nav-links-phone a {
+  text-decoration: none;
+  color: #99a5b9;
+  font-weight: 500;
+  font-size: large;
+}
+
+.nav-links-phone a:hover {
+  color: var(--primary-color);
+  border-bottom: var(--primary-color) solid 2px;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Existing Hero, Skills, Projects, Blogs, Footer, and Scrollbar styles (unchanged) */
 .hero {
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-top: 14vh;
 }
 
@@ -79,6 +142,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
 .hero-img img {
   width: 75%;
   height: auto;
@@ -131,9 +195,11 @@ body {
   color: #f3f4f6;
   text-align: center;
 }
+
 .social-links {
   margin: 10px 5px 30px 5px;
 }
+
 .social-links a {
   padding: 8px 16px;
   text-decoration: none;
@@ -148,6 +214,7 @@ body {
   transform: translateY(-2px);
   transition: transform 0.3s ease-in-out;
 }
+
 .material-symbols-outlined {
   font-variation-settings: "FILL" 10, "wght" 400, "GRAD" 10, "opsz" 24;
   border: hsl(217, 91%, 60%) solid 2px;
@@ -164,8 +231,7 @@ body {
   transition: color 0.5s ease-in-out;
 }
 
-/* SKILLS  */
-
+/* SKILLS */
 .skills,
 .projects,
 .blogs {
@@ -215,7 +281,6 @@ body {
 }
 
 /* PROJECTS */
-
 .proj-link {
   text-decoration: none;
   color: #f3f4f6;
@@ -245,8 +310,8 @@ body {
   margin: 10px 8px;
   display: flex;
   flex-direction: column;
-  min-height: 150px; /* Ensures consistent minimum height */
-  height: 100%; /* Makes cards stretch to match row height */
+  min-height: 150px;
+  height: 100%;
   box-sizing: border-box;
   width: 100%;
 }
@@ -270,7 +335,7 @@ body {
 .proj-desc {
   margin: 5px 2px 4px 1.3rem;
   text-align: left;
-  flex-grow: 1; /* Allows description to expand and push tech down */
+  flex-grow: 1;
   list-style-type: disc;
 }
 
@@ -284,10 +349,7 @@ body {
   font-style: italic;
 }
 
-/* ----------------- */
-
 /* BLOG */
-
 .blogs-container {
   max-width: 1200px;
   width: 100%;
@@ -296,7 +358,6 @@ body {
 }
 
 .blogs-title {
-  /* text-align: center; */
   font-size: 2.5em;
   color: var(--title-color);
   margin-bottom: 40px;
@@ -304,7 +365,6 @@ body {
 
 .blog-set {
   width: 100%;
-  /* text-align: center; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -374,9 +434,7 @@ body {
   background: hsl(217, 91%, 50%);
 }
 
-/* -------------------------- */
-
-/* FOOTER  */
+/* FOOTER */
 footer {
   background-color: #0c1527;
   color: #f3f4f6;
@@ -415,127 +473,8 @@ footer {
   border: 3px solid var(--bg-color);
 }
 
-.navbar-phone {
-  display: none;
-}
-
 /* RESPONSIVE STYLES */
-
 @media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-img {
-    width: 95%;
-  }
-
-  .hero-txt {
-    width: 100%;
-  }
-
-  .head-txt {
-    font-size: 2rem;
-  }
-
-  .description {
-    font-size: 1.1rem;
-  }
-  .education-title {
-    font-size: 1.8rem;
-    margin-top: 1.4rem;
-    margin-bottom: .2rem;
-  }
-
-  .skills,
-  .projects,
-  .blogs {
-    width: 90vw;
-    margin: auto auto 1rem auto;
-  }
-
-  /* --- burger animation --- */
-  .hamburger {
-    font-size: 30px;
-    transition: transform 0.35s ease-in-out;
-  }
-  .hamburger.open {
-    transform: rotate(180deg); /* spin to hint “close” */
-  }
-
-  /* --- smoother panel slide --- */
-  .nav-links-phone {
-    opacity: 0;
-    transform: translateX(-100%);
-    transition: transform 0.35s ease, opacity 0.35s ease;
-  }
-  .nav-links-phone.active {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  /* Mobile Navbar Styles */
-  .navbar-phone {
-    display: none;
-    background-color: #0c1527;
-    padding: 10px 20px;
-    height: 60px;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-
-  .navbar-phone .logo {
-    margin-left: 0;
-  }
-
-  .hamburger {
-    font-size: 30px;
-    color: #f3f4f6;
-    cursor: pointer;
-  }
-
-  .nav-links-phone {
-    display: none;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: #0c1527;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px 0;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .nav-links-phone.active {
-    display: flex;
-    transform: translateX(0);
-  }
-
-  .nav-links-phone li {
-    list-style: none;
-  }
-
-  .nav-links-phone a {
-    text-decoration: none;
-    color: #99a5b9;
-    font-weight: 500;
-    font-size: large;
-  }
-
-  .nav-links-phone a:hover {
-    color: var(--primary-color);
-    border-bottom: var(--primary-color) solid 2px;
-    transition: color 0.2s ease-in-out;
-  }
-
   .navbar {
     display: none;
   }
@@ -544,15 +483,13 @@ footer {
     display: flex;
   }
 
-  /* PROJECTS */
-
   .proj-set {
-    grid-template-columns: 1fr; /* Single column on smaller screens */
+    grid-template-columns: 1fr;
   }
 
   .proj-card {
     margin: 10px 0;
-    min-height: 200px; /* Slightly smaller min-height for mobile */
+    min-height: 200px;
   }
 
   .projects-title {
@@ -562,8 +499,6 @@ footer {
   .proj-title {
     font-size: 1.3em;
   }
-
-  /* BLOGS */
 
   .blog-set {
     grid-template-columns: 1fr;
@@ -590,8 +525,6 @@ footer {
     padding: 4px 8px;
     font-size: 0.85em;
   }
-
-  /* SKILLS  */
 
   .skills-container {
     padding: 15px;

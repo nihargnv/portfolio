@@ -136,27 +136,72 @@
   top: 20px;
 }
 
+/* ─────────  MOBILE (≤ 600 px)  ───────── */
 @media (max-width: 600px) {
+  /* draw the vertical line further left and a bit thinner */
   .timeline::before {
-    left: 18px;
+    left: 24px; /* keeps it clear of text */
+    width: 3px;
   }
 
+  /* every item becomes full‑width and left‑aligned */
   .education-item {
-    width: 80%;
-    padding-left: 50px;
-    padding-right: 20px;
-    left: 0 !important;
+    width: 100%; /* use all the horizontal space */
+    margin: 24px 0; /* equal spacing above & below */
+    padding: 0 0 0 64px; /* room for the dot + arrow */
+    left: 0 !important; /* cancel the desktop offsets */
   }
 
+  /* reposition the milestone dot */
   .education-item::before {
-    left: 8px;
-    right: auto;
+    left: 23px; /* centred on the vertical line */
+    top: 21px;
+  }
+  .education-item.right::before {
+    left: 23px;
   }
 
+  /* arrows always point right → */
   .education-item .education-content::before {
-    border-right: 10px solid var(--content-arrow-color);
     border-left: none;
+    border-right: 10px solid var(--content-arrow-color);
     left: -10px;
-    right: auto;
+    top: 22px;
+  }
+
+  /* let cards flex to the viewport instead of staying 320 px */
+  .education-content {
+    width: calc(100% - 80px); /* 64 px pad + 16 px breathing room */
+    max-width: 500px; /* stops it stretching on tablets */
+  }
+
+  /* gentle type scale so long titles don’t wrap awkwardly */
+  .education-content h3 {
+    font-size: 1.3em;
+  }
+
+  /* a touch more breathing room under the section heading */
+  .education-title {
+    margin-top: 1.5rem;
+    font-size: 2em;
+  }
+
+  /* 1 ▸ disable the old left/right pointers that cause doubles */
+  .education-item.left .education-content::before,
+  .education-item.right .education-content::before {
+    display: none; /* kills the desktop triangles */
+  }
+
+  /* 2 ▸ draw one universal arrow pointing → for every card */
+  .education-item .education-content::after {
+    content: "";
+    position: absolute;
+    top: 22px; /* lines up with text block */
+    left: -10px; /* sits just left of the card */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid var(--content-arrow-color);
   }
 }
