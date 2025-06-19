@@ -1,0 +1,207 @@
+:root {
+  --background-color: #1f2937;
+  --title-color: hsl(217, 91%, 60%);
+  --timeline-color: hsl(217, 91%, 60%);
+  --dot-color: hsl(217, 91%, 60%);
+  --content-bg-color: #3f5169;
+  --content-text-color: #f3f4f6;
+  --content-subtext-color: #dddee0;
+  --content-arrow-color: #f3f4f6;
+}
+
+.education-section {
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  margin-top: 15vh;
+}
+
+.education-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 2px;
+}
+
+.education-title {
+  text-align: center;
+  font-size: 2.5em;
+  color: var(--title-color);
+  margin-bottom: 12px;
+  margin-top: 2rem;
+}
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--timeline-color);
+  left: 50%;
+  margin-left: 8px;
+}
+
+.education-item {
+  position: relative;
+  margin: 20px 0;
+  width: 50%;
+  padding: 10px 40px;
+  box-sizing: border-box;
+}
+
+.education-item.left {
+  left: -0.5%;
+}
+
+.education-item.right {
+  left: 52%;
+}
+
+.education-content {
+  background: var(--content-bg-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(194, 85, 85, 0.1);
+  position: relative;
+  width: 320px;
+  font-size: small;
+}
+
+.education-content:hover {
+  box-shadow: hsl(217, 91%, 60%) 0px 4px 12px;
+  transition: box-shadow 0.3s ease-in-out;
+  background-color: hsl(217, 25%, 22%);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.education-content h3 {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+  color: var(--content-text-color);
+}
+
+.education-content p {
+  margin: 5px 0;
+  color: var(--content-subtext-color);
+}
+
+.education-item::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: var(--dot-color);
+  border-radius: 50%;
+  top: 28px;
+}
+
+.education-item.left::before {
+  right: -24px;
+}
+
+.education-item.right::before {
+  left: -15px;
+}
+
+.education-item.left .education-content::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid var(--content-arrow-color);
+  right: -8px;
+  top: 20px;
+}
+
+.education-item.right .education-content::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid var(--content-arrow-color);
+  left: -10px;
+  top: 20px;
+}
+
+/* ─────────  MOBILE (≤ 600 px)  ───────── */
+@media (max-width: 600px) {
+  /* draw the vertical line further left and a bit thinner */
+  .timeline::before {
+    left: 24px; /* keeps it clear of text */
+    width: 3px;
+  }
+
+  /* every item becomes full‑width and left‑aligned */
+  .education-item {
+    width: 100%; /* use all the horizontal space */
+    margin: 24px 0; /* equal spacing above & below */
+    padding: 0 0 0 64px; /* room for the dot + arrow */
+    left: 0 !important; /* cancel the desktop offsets */
+  }
+
+  /* reposition the milestone dot */
+  .education-item::before {
+    left: 23px; /* centred on the vertical line */
+    top: 21px;
+  }
+  .education-item.right::before {
+    left: 23px;
+  }
+
+  /* arrows always point right → */
+  .education-item .education-content::before {
+    border-left: none;
+    border-right: 10px solid var(--content-arrow-color);
+    left: -10px;
+    top: 22px;
+  }
+
+  /* let cards flex to the viewport instead of staying 320 px */
+  .education-content {
+    width: calc(100% - 80px); /* 64 px pad + 16 px breathing room */
+    max-width: 500px; /* stops it stretching on tablets */
+  }
+
+  /* gentle type scale so long titles don’t wrap awkwardly */
+  .education-content h3 {
+    font-size: 1.3em;
+  }
+
+  /* a touch more breathing room under the section heading */
+  .education-title {
+    margin-top: 1.5rem;
+    font-size: 2em;
+  }
+
+  /* 1 ▸ disable the old left/right pointers that cause doubles */
+  .education-item.left .education-content::before,
+  .education-item.right .education-content::before {
+    display: none; /* kills the desktop triangles */
+  }
+
+  /* 2 ▸ draw one universal arrow pointing → for every card */
+  .education-item .education-content::after {
+    content: "";
+    position: absolute;
+    top: 22px; /* lines up with text block */
+    left: -10px; /* sits just left of the card */
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid var(--content-arrow-color);
+  }
+}

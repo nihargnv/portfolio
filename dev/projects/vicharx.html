@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VicharX - Nihar Portfolio</title>
+
+    <!-- Global styles you already use -->
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="proj-page.css" />
+
+    <!-- Icons (same as template) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <!-- Desktop Navbar -->
+    <nav class="navbar">
+      <div class="logo"><a href="index.html">Nihar</a></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#proj">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="navbar-phone">
+      <div class="logo"><a href="#">Nihar</a></div>
+      <span class="material-symbols-outlined hamburger" onclick="toggleMenu()"
+        >menu</span
+      >
+      <ul class="nav-links-phone">
+        <li><a href="/" onclick="toggleMenu()">Home</a></li>
+        <li><a href="/#proj" onclick="toggleMenu()">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            onclick="toggleMenu()"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- =========  PROJECT CONTENT  ========= -->
+
+    <section class="proj-content">
+      <h1 class="pro-title">
+        VicharX – Intelligent Document Management Platform
+      </h1>
+
+      <div>
+        <p class="proj-tech">Technologies&nbsp;Used</p>
+        <div class="proj-tech-peices">
+          <p>Python</p>
+          <p>Django</p>
+          <p>MySQL</p>
+          <p>Transformers</p>
+          <p>scikit-learn</p>
+          <p>HTML/CSS/JS</p>
+          <p>Docker</p>
+        </div>
+      </div>
+
+      <p class="proj-desc">
+        VicharX is an AI-driven document management platform built for
+        intelligent storage, classification, and retrieval of digital files.
+        Inspired by enterprise-grade systems, it is engineered to offer smart
+        search and automated document understanding while remaining lightweight
+        enough to run on standard hosting environments.
+      </p>
+
+      <div class="proj-yt">
+        <iframe
+          width="720"
+          height="360"
+          src="https://www.youtube.com/embed/KVLKekJYSkM"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div class="proj-content">
+        <h2>Core Functionalities</h2>
+        <ul>
+          <li>
+            <strong>Document Classification:</strong> Auto-classifies uploads
+            into invoices, certificates, prescriptions, IDs, and contracts using
+            an ensemble classifier with scikit-learn pipelines.
+          </li>
+          <li>
+            <strong>Semantic Search Engine:</strong> Integrates vector search
+            and traditional query scoring to match by filename, type, content
+            summary, or tag relevance.
+          </li>
+          <li>
+            <strong>Summarisation:</strong> Extracts concise previews using
+            transformers to allow users to skim contents instantly without
+            opening large documents.
+          </li>
+          <li>
+            <strong>Lightweight Interface:</strong> Built using pure HTML, CSS,
+            and vanilla JavaScript for speed and responsiveness with zero
+            dependency on frontend frameworks.
+          </li>
+        </ul>
+
+        <h2>Tech Stack & Architecture</h2>
+        <ul>
+          <li>
+            <strong>Backend:</strong> Django 4.0 with Django ORM and REST
+            endpoints for document CRUD, classification, and search APIs.
+          </li>
+          <li>
+            <strong>Database:</strong> MySQL relational schema storing metadata,
+            user sessions, summaries, and document types.
+          </li>
+          <li>
+            <strong>ML Services:</strong> Python scripts containerised with
+            Docker, executing classification and summarisation asynchronously
+            upon upload.
+          </li>
+          <li>
+            <strong>Deployment:</strong> Locally containerised with planned
+            extension to Google Cloud using App Engine and Cloud SQL.
+          </li>
+        </ul>
+
+        <h2>Advantages Over Traditional File Managers</h2>
+        <ul>
+          <li>Zero manual tagging needed due to automated file analysis.</li>
+          <li>
+            Search results ranked by semantic weight, not just text match.
+          </li>
+          <li>
+            Summaries reduce open-and-scroll time significantly for large files.
+          </li>
+          <li>
+            Easy to integrate into existing infrastructure due to stateless APIs
+            and optional webhooks.
+          </li>
+        </ul>
+
+        <h2>Planned Enhancements</h2>
+        <ul>
+          <li>
+            Drag-and-drop bulk upload with real-time feedback on classification
+            progress.
+          </li>
+          <li>
+            Live collaboration with edit/version control on shared documents.
+          </li>
+          <li>
+            Role-based user permissions for access-controlled environments.
+          </li>
+          <li>
+            Embedded AI assistant for natural language Q&A over document
+            content.
+          </li>
+        </ul>
+
+        <h2>Project Scope</h2>
+        <p>
+          VicharX is being developed as a multi-phase project. The current
+          version functions as a single-user prototype tested with mock
+          datasets. The system is being iteratively enhanced to support
+          multi-user access, audit trails, and full cloud migration by Q3 2025.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========  /PROJECT CONTENT  ========== -->
+
+    <!-- Footer identical to template -->
+    <footer>
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#edu">Education</a></li>
+          <li><a href="/#proj">Projects</a></li>
+          <li>
+            <a
+              href="mailto:nihargnv@gmail.com?subject=Regarding {your subject}&body=(via website)%0A{Your Query}"
+              >Contact&nbsp;Me</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="footer-content">
+        <p>&copy; 2025 Nihar GNV. All rights reserved.</p>
+        <p>Made with <span class="heart">❤️</span> by Nihar.</p>
+      </div>
+    </footer>
+
+    <!-- Hamburger toggle (unchanged) -->
+    <script>
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links-phone");
+        const hamburger = document.querySelector(".hamburger");
+        navLinks.classList.toggle("active");
+        const isOpen = navLinks.classList.contains("active");
+        hamburger.textContent = isOpen ? "close" : "menu";
+        hamburger.classList.toggle("open", isOpen);
+      }
+    </script>
+  </body>
+</html>

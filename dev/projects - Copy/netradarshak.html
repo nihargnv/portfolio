@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netradarshak - Nihar Portfolio</title>
+
+    <!-- Global styles you already use -->
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="proj-page.css" />
+
+    <!-- Icons (same as template) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <!-- Desktop Navbar -->
+    <nav class="navbar">
+      <div class="logo"><a href="index.html">Nihar</a></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#proj">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="navbar-phone">
+      <div class="logo"><a href="#">Nihar</a></div>
+      <span class="material-symbols-outlined hamburger" onclick="toggleMenu()"
+        >menu</span
+      >
+      <ul class="nav-links-phone">
+        <li><a href="/" onclick="toggleMenu()">Home</a></li>
+        <li><a href="/#proj" onclick="toggleMenu()">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            onclick="toggleMenu()"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- =========  PROJECT CONTENT  ========= -->
+    <section class="proj-content">
+      <!-- Title -->
+      <h1 class="pro-title">Netradarshak — AI -Powered Assistive Spectacles</h1>
+
+      <!-- Technology badges -->
+      <div>
+        <p class="proj-tech">Technologies&nbsp;Used</p>
+        <div class="proj-tech-peices">
+          <p>Raspberry&nbsp;Pi 4</p>
+          <p>Python 3</p>
+          <p>Computer Vision</p>
+          <p>ViT2 (Transformers)</p>
+          <p>Easy OCR</p>
+          <p>TCP Streaming</p>
+        </div>
+      </div>
+
+      <!-- Executive summary -->
+      <p class="proj-desc">
+        Netradarshak is a pair of smart spectacles that provide continuous,
+        context aware verbal guidance to people with severe visual impairment.
+        A Raspberry Pi 4 captures video, relays it with low latency TCP to an
+        Android phone for heavy inference, and returns high precision audio
+        feedback.
+      </p>
+
+      <!-- Demo video -->
+      <div class="proj-yt">
+        <iframe
+          width="720"
+          height="360"
+          src="https://www.youtube.com/embed/EAT9a-Z3Wy4"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- In -depth write -up -->
+      <div class="proj-content">
+        <h2>System Overview</h2>
+        <p>
+          The design is partitioned into five layers. Capturing and basic pre
+          -processing occur on the Pi, while the phone handles three concurrent
+          models (Face ID, scene captioning, OCR). The result is played back
+          through a low -latency TTS engine. All services are containerised to
+          simplify field upgrades.
+        </p>
+
+        <h2>Key Capabilities</h2>
+        <ul>
+          <li>
+            <strong>Face Recognition:</strong> 128-D embeddings (FaceNet
+            -Mobile) yield&nbsp;94 % top -1 accuracy on a 500 -image in -house
+            set.
+          </li>
+          <li>
+            <strong>Scene Captioning:</strong> ViT2 -Base, fine -tuned on MS
+            -COCO, generates natural -language descriptions at 6 -8 fps.
+          </li>
+          <li>
+            <strong>Document Reading:</strong> Easy OCR with confidence
+            gating (≥ 85 %) for real -time narration of printed text.
+          </li>
+          <li>
+            <strong>Bidirectional Control:</strong> Users can issue voice
+            commands or touch gestures to switch modes or repeat the last
+            description.
+          </li>
+        </ul>
+
+        <h2>Hardware Highlights</h2>
+        <ul>
+          <li>8 -MP Sony IMX219 camera, 12° downward tilt for natural POV.</li>
+          <li>
+            Two Samsung INR -18650 30Q cells supply ≈ 3 h 48 m of continuous
+            operation.
+          </li>
+          <li>
+            SLS -printed PA -12 housing keeps total on -face weight under 90 g.
+          </li>
+        </ul>
+
+        <h2>Performance Metrics</h2>
+        <ul>
+          <li>
+            <strong>End to -end latency:</strong> 326 ms ± 27 ms (camera ➝
+            speech).
+          </li>
+          <li>
+            <strong>Mean power draw:</strong> 5.6 W; SoC temperature remains
+            below 65 °C with passive copper shim.
+          </li>
+        </ul>
+
+        <h2>Engineering Challenges &amp; Solutions</h2>
+        <ul>
+          <li>
+            <em>Frame drops under peak traffic:</em> mitigated by enlarging TCP
+            buffers to 512 KB and adding back -pressure signalling.
+          </li>
+          <li>
+            <em>Thermal throttling after 45 min:</em> resolved with a 0.8 mm
+            copper shim and arm frequency cap at 1.2 GHz.
+          </li>
+          <li>
+            <em>Camera driver mismatch:</em> migrated from deprecated
+            <code>raspistill</code> to the <code>libcamera</code> stack and
+            patched overlays.
+          </li>
+        </ul>
+
+        <h2>Planned Enhancements</h2>
+        <ul>
+          <li>
+            Obstacle detection via a three -sensor time -of -flight array
+            (effective range 0 -2 m).
+          </li>
+          <li>Offline wake -word engine for hands -free mode switching.</li>
+          <li>
+            Quantised on -device models to remove smartphone dependency for core
+            functionality.
+          </li>
+          <li>Solar trickle -charging attachment for extended outdoor use.</li>
+        </ul>
+      </div>
+    </section>
+    <!-- ==========  /PROJECT CONTENT  ========== -->
+
+    <!-- Footer identical to template -->
+    <footer>
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#edu">Education</a></li>
+          <li><a href="/#proj">Projects</a></li>
+          <li>
+            <a
+              href="mailto:nihargnv@gmail.com?subject=Regarding {your subject}&body=(via website)%0A{Your Query}"
+              >Contact&nbsp;Me</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="footer-content">
+        <p>&copy; 2025 Nihar GNV. All rights reserved.</p>
+        <p>Made with <span class="heart">❤️</span> by Nihar.</p>
+      </div>
+    </footer>
+
+    <!-- Hamburger toggle (unchanged) -->
+    <script>
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links-phone");
+        const hamburger = document.querySelector(".hamburger");
+        navLinks.classList.toggle("active");
+        const isOpen = navLinks.classList.contains("active");
+        hamburger.textContent = isOpen ? "close" : "menu";
+        hamburger.classList.toggle("open", isOpen);
+      }
+    </script>
+  </body>
+</html>

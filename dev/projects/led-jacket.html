@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LED Jacket - Nihar Portfolio</title>
+
+    <!-- Global styles you already use -->
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="proj-page.css" />
+
+    <!-- Icons (same as template) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <!-- Desktop Navbar -->
+    <nav class="navbar">
+      <div class="logo"><a href="index.html">Nihar</a></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#proj">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="navbar-phone">
+      <div class="logo"><a href="#">Nihar</a></div>
+      <span class="material-symbols-outlined hamburger" onclick="toggleMenu()"
+        >menu</span
+      >
+      <ul class="nav-links-phone">
+        <li><a href="/" onclick="toggleMenu()">Home</a></li>
+        <li><a href="/#proj" onclick="toggleMenu()">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            onclick="toggleMenu()"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- =========  PROJECT CONTENT  ========= -->
+
+    <section class="proj-content">
+      <h1 class="pro-title">
+        LED Dance Jacket - Wearable Synchronized Lighting
+      </h1>
+
+      <div>
+        <p class="proj-tech">Technologies&nbsp;Used</p>
+        <div class="proj-tech-peices">
+          <p>Arduino Uno</p>
+          <p>NodeMCU (ESP8266)</p>
+          <p>WS2812B LEDs</p>
+          <p>RF Transmitter/Receiver</p>
+          <p>C++</p>
+          <p>Power MOSFETs</p>
+        </div>
+      </div>
+
+      <p class="proj-desc">
+        The LED Dance Jacket is a microcontroller-controlled wearable system
+        designed for performance environments. It enables synchronized lighting
+        patterns on the jacket using programmable addressable LEDs. The system
+        supports both standalone animations and remote triggering for group
+        performances, allowing multiple jackets to flash in perfect sync during
+        dance routines or stage shows.
+      </p>
+
+      <!-- <div class="proj-yt">
+        <iframe
+          width="720"
+          height="360"
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          allowfullscreen
+        ></iframe>
+      </div> -->
+
+      <div class="proj-content">
+        <h2>Implemented Functionalities</h2>
+        <ul>
+          <li>
+            <strong>LED Segmentation:</strong> Jacket lighting is divided into
+            three zones - hands, pockets, and torso - each controlled
+            independently via MOSFETs.
+          </li>
+          <li>
+            <strong>Pattern Control:</strong> Pre-programmed lighting sequences
+            include chase, pulse, flash, and sync modes written using the
+            FastLED library.
+          </li>
+          <li>
+            <strong>Wireless Trigger:</strong> A NodeMCU-based system sends
+            commands wirelessly via 433 MHz RF modules to trigger lighting
+            effects.
+          </li>
+          <li>
+            <strong>Multi-Device Sync:</strong> Multiple jackets can be
+            triggered simultaneously using a central controller, ensuring
+            synchronized visuals across performers.
+          </li>
+        </ul>
+
+        <h2>Hardware Details</h2>
+        <ul>
+          <li>
+            Arduino Uno as the primary controller for LED handling and logic
+            execution.
+          </li>
+          <li>
+            ESP8266 NodeMCU board used for remote triggering and communication.
+          </li>
+          <li>
+            Custom power circuit with IRFZ44N MOSFETs for 12V LED switching.
+          </li>
+          <li>Portable 12V battery pack for stage portability and autonomy.</li>
+        </ul>
+
+        <h2>Future Development Goals</h2>
+        <ul>
+          <li>
+            Music-reactive lighting using FFT audio analysis on-board the
+            controller.
+          </li>
+          <li>
+            Dedicated mobile app for real-time selection of lighting sequences.
+          </li>
+          <li>
+            Custom PCB design for reducing size and increasing reliability of
+            connections.
+          </li>
+          <li>Battery monitoring and overcurrent protection circuitry.</li>
+        </ul>
+
+        <h2>Status</h2>
+        <p>
+          The jacket currently supports standalone and remote-triggered modes
+          for five costumes used in a group dance sequence. Further work is in
+          progress to add interactivity, music responsiveness, and advanced
+          synchronization options. This version represents a functional
+          prototype stage with strong potential for enhancement and public
+          performance scalability.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========  /PROJECT CONTENT  ========== -->
+
+    <!-- Footer identical to template -->
+    <footer>
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#edu">Education</a></li>
+          <li><a href="/#proj">Projects</a></li>
+          <li>
+            <a
+              href="mailto:nihargnv@gmail.com?subject=Regarding {your subject}&body=(via website)%0A{Your Query}"
+              >Contact&nbsp;Me</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="footer-content">
+        <p>&copy; 2025 Nihar GNV. All rights reserved.</p>
+        <p>Made with <span class="heart">❤️</span> by Nihar.</p>
+      </div>
+    </footer>
+
+    <!-- Hamburger toggle (unchanged) -->
+    <script>
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links-phone");
+        const hamburger = document.querySelector(".hamburger");
+        navLinks.classList.toggle("active");
+        const isOpen = navLinks.classList.contains("active");
+        hamburger.textContent = isOpen ? "close" : "menu";
+        hamburger.classList.toggle("open", isOpen);
+      }
+    </script>
+  </body>
+</html>

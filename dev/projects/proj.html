@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nihar Portfolio</title>
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="proj-page.css" />
+
+    <link rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" /
+    >
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">Nihar</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#proj">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="navbar-phone">
+      <div class="logo">
+        <a href="#">Nihar</a>
+      </div>
+      <span class="material-symbols-outlined hamburger" onclick="toggleMenu()"
+        >menu</span
+      >
+      <ul class="nav-links-phone">
+        <li><a href="/" onclick="toggleMenu()">Home</a></li>
+        <li><a href="/" onclick="toggleMenu()">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            onclick="toggleMenu()"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <section class="proj-content">
+      <h1 class="pro-title">Title goes here...</h1>
+      <div>
+        <p class="proj-tech">Technologies used</p>
+        <div class="proj-tech-peices">
+          <p>HTML5</p>
+          <p>CSS</p>
+          <p>Python</p>
+          <p>Django</p>
+        </div>
+      </div>
+      <!-- <a href="/" class="proj-github">Github</a> -->
+      <p class="proj-desc">
+        description goes here. This is a brief overview of the project,
+        highlighting its main features and functionalities. It should give the
+        reader a clear understanding of what the project is about and its
+        purpose.
+      </p>
+
+      <div class="proj-yt">
+        <iframe
+          width="720"
+          height="360"
+          src="https://www.youtube.com/embed/2CWZcVCSFkA"
+        >
+        </iframe>
+      </div>
+
+      <div class="proj-content">
+        this is a detailed description of the project. It should include
+        details about the project's architecture, challenges faced during development, and how those challenges were overcome. You can also discuss the impact of the project, lessons learned, and any future improvements or features you plan to add. Include screenshots, diagrams, or code snippets if relevant to provide a deeper understanding of the work involved.
+      </div>
+    </section>
+
+    <footer>
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#edu">Education</a></li>
+          <li><a href="/#proj">Projects</a></li>
+          <li>
+            <a
+              href="mailto:nihargnv@gmail.com?subject=Regarding {your subject}?body=(via website)%0A{Your Query}"
+              >Contact Me</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="footer-content">
+        <p>&copy; 2025 Nihar GNV. All rights reserved.</p>
+        <p>Made with <span class="heart">❤️</span> by Nihar.</p>
+      </div>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links-phone");
+        const hamburger = document.querySelector(".hamburger");
+
+        navLinks.classList.toggle("active");
+
+        // swap icon text & animate
+        const isOpen = navLinks.classList.contains("active");
+        hamburger.textContent = isOpen ? "close" : "menu";
+        hamburger.classList.toggle("open", isOpen);
+      }
+    </script>
+  </body>
+</html>
