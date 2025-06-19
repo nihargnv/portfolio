@@ -73,6 +73,21 @@
     font-weight: 400;
 }
 
+.back-btn{
+    text-decoration: none;
+    text-align: center;
+    margin: 2rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid hsl(217, 91%, 60%);
+    border-radius: 25px;
+    color: #f0f0f0;
+}
+
+.back-btn:hover{
+    background-color: hsl(217, 91%, 60%);
+    color: #f0f0f0;
+}
+
 @media screen and (max-width: 768px) {
 
     .proj-content {
