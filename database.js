@@ -20,7 +20,7 @@ const projects = [
       "Integrated face recognition, OCR, and image captioning with audio feedback through TTS.",
     ],
     tech: ["AI", "Python", "OpenCV", "Raspberry Pi", ],
-    link: "/projects/netradarshak.html",
+    link: "./projects/netradarshak.html",
   },
   {
     title: "VicharX - Intelligent Document Manager",
@@ -29,7 +29,7 @@ const projects = [
       "Implemented backend with Django and ML pipelines for summarization and file tagging.",
     ],
     tech: [ "AI", "Python", "Django", "MySQL"],
-    link: "/projects/vicharx.html",
+    link: "./projects/vicharx.html",
   },
   {
     title: "LED Dance Jacket - Wearable Synchronized Lighting",
@@ -38,7 +38,7 @@ const projects = [
       "Used Arduino and NodeMCU for real-time lighting control across multiple outfits.",
     ],
     tech: ["Arduino", "ESP8266", "C++", "RF Communication"],
-    link: "/projects/led-jacket.html",
+    link: "./projects/led-jacket.html",
   },
   {
     title: "MedAssist - Health Monitoring Prototype",
@@ -47,7 +47,7 @@ const projects = [
       "Displayed live readings on OLED and planned wireless sync for mobile alerts.",
     ],
     tech: ["AI", "Arduino", "Pulse Sensor", "ESP8266", ],
-    link: "/projects/med-assist.html",
+    link: "./projects/med-assist.html",
   },
 ];
 
@@ -57,7 +57,7 @@ const blogs = [
     title: "Coming Soon...",
     desc: "Sharing my experiences and insights on various tech topics.",
     date: "20 June 2025",
-    link: "/",
+    link: "./",
   },
 
   // {
