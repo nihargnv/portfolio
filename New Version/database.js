@@ -14,60 +14,70 @@ const skills = [
 
 const projects = [
   {
-    title: "NetraDarshak - AI Powered Solution for Blind",
+    title: "NetraDarshak - AI-Powered Smart Glasses",
     desc: [
-      "Developed an AI-based assistive tool for visually impaired users.",
-      "Integrated real-time object detection and text-to-speech functionality.",
+      "Developed an AI-based wearable for visually impaired users using Raspberry Pi and Android.",
+      "Integrated face recognition, OCR, and image captioning with audio feedback through TTS.",
     ],
-    tech: ["Python", "Django", "React"],
-    link: "https://example.com/netradarshak",
+    tech: ["AI", "Python", "OpenCV", "Raspberry Pi", ],
+    link: "/projects/netradarshak.html",
   },
   {
-    title: "TaskMaster - Productivity App",
+    title: "VicharX - Intelligent Document Manager",
     desc: [
-      "Built a web app for task management and scheduling.",
-      "Implemented user authentication and real-time updates.",
+      "Designed a platform for AI-driven document classification and semantic search.",
+      "Implemented backend with Django and ML pipelines for summarization and file tagging.",
     ],
-    tech: ["JavaScript", "Node.js", "MongoDB"],
-    link: "https://example.com/taskmaster",
+    tech: [ "AI", "Python", "Django", "MySQL"],
+    link: "/projects/vicharx.html",
   },
   {
-    title: "WeatherNow - Weather Forecasting Tool",
+    title: "LED Dance Jacket - Wearable Synchronized Lighting",
     desc: [
-      "Created a responsive weather app using public APIs.",
-      "Designed an intuitive UI with dynamic data visualization.",
+      "Built a stage-performance jacket with programmable LED patterns and wireless sync.",
+      "Used Arduino and NodeMCU for real-time lighting control across multiple outfits.",
     ],
-    tech: ["HTML/CSS", "JavaScript", "OpenWeather API"],
-    link: "https://example.com/weathernow",
+    tech: ["Arduino", "ESP8266", "C++", "RF Communication"],
+    link: "/projects/led-jacket.html",
+  },
+  {
+    title: "MedAssist - Health Monitoring Prototype",
+    desc: [
+      "Created a prototype for real-time heart rate and temperature monitoring.",
+      "Displayed live readings on OLED and planned wireless sync for mobile alerts.",
+    ],
+    tech: ["AI", "Arduino", "Pulse Sensor", "ESP8266", ],
+    link: "/projects/med-assist.html",
   },
 ];
 
+
 const blogs = [
   {
-    title: "My Journey with Machine Learning",
-    desc: "Sharing my experiences and challenges while learning ML algorithms.",
-    date: "2024-02-10",
-    link: "https://yourblog.com/ml-journey",
+    title: "Coming Soon...",
+    desc: "Sharing my experiences and insights on various tech topics.",
+    date: "20 June 2025",
+    link: "/",
   },
 
-  {
-    title: "Understanding Neural Networks",
-    desc: "A deep dive into the architecture and functioning of neural networks, exploring their applications in AI.",
-    date: "2023-10-01",
-    link: "https://yourblog.com/understanding-neural-networks",
-  },
+  // {
+  //   title: "Understanding Neural Networks",
+  //   desc: "A deep dive into the architecture and functioning of neural networks, exploring their applications in AI.",
+  //   date: "2023-10-01",
+  //   link: "https://yourblog.com/understanding-neural-networks",
+  // },
 
-  {
-    title: "Building Scalable Web Applications",
-    desc: "Best practices and tools for developing scalable web applications.",
-    date: "2023-09-15",
-    link: "https://yourblog.com/building-scalable-web-apps",
-  },
+  // {
+  //   title: "Building Scalable Web Applications",
+  //   desc: "Best practices and tools for developing scalable web applications.",
+  //   date: "2023-09-15",
+  //   link: "https://yourblog.com/building-scalable-web-apps",
+  // },
 
-  {
-    title: "Exploring Data Science",
-    desc: "An introduction to data science concepts and tools, with practical examples.",
-    date: "2023-08-20",
-    link: "https://yourblog.com/exploring-data-science",
-  },
+  // {
+  //   title: "Exploring Data Science",
+  //   desc: "An introduction to data science concepts and tools, with practical examples.",
+  //   date: "2023-08-20",
+  //   link: "https://yourblog.com/exploring-data-science",
+  // },
 ];

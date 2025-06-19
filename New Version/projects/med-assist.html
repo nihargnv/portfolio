@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MediAssist - Nihar Portfolio</title>
+
+    <!-- Global styles you already use -->
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="proj-page.css" />
+
+    <!-- Icons (same as template) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <!-- Desktop Navbar -->
+    <nav class="navbar">
+      <div class="logo"><a href="index.html">Nihar</a></div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#proj">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="navbar-phone">
+      <div class="logo"><a href="#">Nihar</a></div>
+      <span class="material-symbols-outlined hamburger" onclick="toggleMenu()"
+        >menu</span
+      >
+      <ul class="nav-links-phone">
+        <li><a href="/" onclick="toggleMenu()">Home</a></li>
+        <li><a href="/#proj" onclick="toggleMenu()">Projects</a></li>
+        <li>
+          <a
+            href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}"
+            onclick="toggleMenu()"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- =========  PROJECT CONTENT  ========= -->
+
+    <section class="proj-content">
+      <h1 class="pro-title">MedAssist - Smart Medical Aid Prototype</h1>
+
+      <div>
+        <p class="proj-tech">Technologies&nbsp;Used</p>
+        <div class="proj-tech-peices">
+          <p>Arduino</p>
+          <p>ESP8266</p>
+          <p>C/C++</p>
+          <p>Pulse Sensor</p>
+          <p>OLED Display</p>
+          <p>UART Serial</p>
+        </div>
+      </div>
+
+      <p class="proj-desc">
+        MedAssist is a proof-of-concept prototype for an embedded
+        health-monitoring platform. It is designed to track basic patient vitals
+        such as heart rate and body temperature using microcontroller-based
+        modules. The aim is to integrate these readings into a wireless system
+        that can transmit data to mobile applications for further analysis,
+        alerting, and remote care support.
+      </p>
+
+      <!-- <div class="proj-yt">
+        <iframe
+          width="720"
+          height="360"
+          src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+          allowfullscreen
+        ></iframe>
+      </div> -->
+
+      <div class="proj-content">
+        <h2>Implemented Functionalities</h2>
+        <ul>
+          <li>
+            <strong>Pulse Monitoring:</strong> Captures live heart rate data
+            from finger pulse sensor and displays BPM on OLED screen.
+          </li>
+          <li>
+            <strong>Temperature Sensing:</strong> Reads ambient or body
+            temperature using a digital sensor and logs it periodically.
+          </li>
+          <li>
+            <strong>Microcontroller Control:</strong> All measurements processed
+            via Arduino Uno and NodeMCU for serial relay.
+          </li>
+          <li>
+            <strong>OLED Interface:</strong> Provides real-time feedback using a
+            small 0.96" display embedded on the hardware.
+          </li>
+        </ul>
+
+        <h2>Scope of Current Build</h2>
+        <p>
+          This version is a foundational prototype that validates sensor
+          integration, live reading display, and internal data flow. Wireless
+          communication is established at a serial level but not fully
+          integrated with a frontend application or cloud service.
+        </p>
+
+        <h2>Planned Future Enhancements</h2>
+        <ul>
+          <li>
+            Bluetooth/Wi-Fi sync with mobile app for real-time health alerts and
+            graphs.
+          </li>
+          <li>Fall detection and movement tracking using accelerometers.</li>
+          <li>Automatic SOS messaging based on medical thresholds.</li>
+          <li>Cloud-based dashboard for doctors and caregivers.</li>
+        </ul>
+
+        <h2>Development Status</h2>
+        <p>
+          Only the basic sensor acquisition and hardware interface components
+          have been implemented as of now. Data transmission pipelines,
+          persistent storage, and smart event detection are part of the roadmap.
+          This project remains in early-stage experimental development and will
+          be iterated further based on test feedback and intended deployment
+          environment.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========  /PROJECT CONTENT  ========== -->
+
+    <!-- Footer identical to template -->
+    <footer>
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#edu">Education</a></li>
+          <li><a href="/#proj">Projects</a></li>
+          <li>
+            <a
+              href="mailto:nihargnv@gmail.com?subject=Regarding {your subject}&body=(via website)%0A{Your Query}"
+              >Contact&nbsp;Me</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="footer-content">
+        <p>&copy; 2025 Nihar GNV. All rights reserved.</p>
+        <p>Made with <span class="heart">❤️</span> by Nihar.</p>
+      </div>
+    </footer>
+
+    <!-- Hamburger toggle (unchanged) -->
+    <script>
+      function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links-phone");
+        const hamburger = document.querySelector(".hamburger");
+        navLinks.classList.toggle("active");
+        const isOpen = navLinks.classList.contains("active");
+        hamburger.textContent = isOpen ? "close" : "menu";
+        hamburger.classList.toggle("open", isOpen);
+      }
+    </script>
+  </body>
+</html>
