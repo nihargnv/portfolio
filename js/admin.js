@@ -1662,8 +1662,79 @@ function loadSettingsForm() {
   document.getElementById('override-lc-solved').value = dbPortfolio.stats?.leetcode?.totalSolved || '';
   document.getElementById('override-lc-rating').value = dbPortfolio.stats?.leetcode?.contestRating || '';
 
+  const lcProfile = dbPortfolio.codingProfiles?.find(p => p.platform === 'LeetCode');
+  document.getElementById('settings-lc-username').value = lcProfile?.username || '';
+  document.getElementById('settings-lc-url').value = lcProfile?.url || '';
+
   document.getElementById('settings-accent').value = dbPortfolio.theme?.accentColor || '#6366f1';
   document.getElementById('settings-theme').value = dbPortfolio.theme?.defaultTheme || 'dark';
+}
+
+const btnSyncLeetcode = document.getElementById('btn-sync-leetcode');
+if (btnSyncLeetcode) {
+  btnSyncLeetcode.addEventListener('click', async () => {
+    let username = document.getElementById('settings-lc-username').value.trim();
+    if (!username) {
+      const lcProfile = dbPortfolio.codingProfiles?.find(p => p.platform === 'LeetCode');
+      username = lcProfile?.username;
+    }
+    if (!username) {
+      showToast('Please enter a LeetCode username first.', 'error');
+      return;
+    }
+
+    btnSyncLeetcode.disabled = true;
+    btnSyncLeetcode.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Syncing...';
+    showToast(`Fetching LeetCode stats for @${username}...`, 'info');
+
+    try {
+      const response = await fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${username}`);
+      if (!response.ok) throw new Error('API request failed');
+      const data = await response.json();
+
+      if (data.errors && data.errors.length > 0) {
+        throw new Error(data.errors[0].message || 'User not found on LeetCode');
+      }
+      if (data.totalSolved === undefined) {
+        throw new Error('Failed to retrieve solved statistics');
+      }
+
+      dbPortfolio.stats = dbPortfolio.stats || { leetcode: {} };
+      dbPortfolio.stats.leetcode.easySolved = data.easySolved || 0;
+      dbPortfolio.stats.leetcode.mediumSolved = data.mediumSolved || 0;
+      dbPortfolio.stats.leetcode.hardSolved = data.hardSolved || 0;
+      dbPortfolio.stats.leetcode.totalSolved = data.totalSolved || 0;
+      dbPortfolio.stats.leetcode.globalRanking = data.ranking || 0;
+      dbPortfolio.stats.leetcode.lastUpdated = new Date().toISOString().split('T')[0];
+
+      // Update input fields
+      document.getElementById('override-lc-solved').value = data.totalSolved;
+      document.getElementById('settings-lc-username').value = username;
+
+      // Update dbPortfolio coding profiles object stats dynamically
+      dbPortfolio.codingProfiles = dbPortfolio.codingProfiles || [];
+      let profile = dbPortfolio.codingProfiles.find(p => p.platform === 'LeetCode');
+      if (!profile) {
+        profile = { platform: 'LeetCode', stats: {} };
+        dbPortfolio.codingProfiles.push(profile);
+      }
+      profile.username = username;
+      if (!profile.url || profile.url.includes('nihar-gnv') || profile.url === '') {
+        profile.url = `https://leetcode.com/${username}`;
+        document.getElementById('settings-lc-url').value = profile.url;
+      }
+      profile.stats = profile.stats || {};
+      profile.stats.solved = data.totalSolved;
+
+      showToast('LeetCode stats fetched successfully! Click "Save API Overrides" to persist.', 'success');
+    } catch (err) {
+      console.error(err);
+      showToast(`Failed to fetch live stats: ${err.message}. Please input manually.`, 'error');
+    } finally {
+      btnSyncLeetcode.disabled = false;
+      btnSyncLeetcode.innerHTML = '<i class="fas fa-sync-alt"></i> Sync LeetCode Solved';
+    }
+  });
 }
 
 const btnSaveStats = document.getElementById('btn-save-stats');
@@ -1675,14 +1746,21 @@ if (btnSaveStats) {
     dbPortfolio.stats.leetcode.contestRating = parseInt(document.getElementById('override-lc-rating').value) || 0;
     dbPortfolio.stats.leetcode.lastUpdated = new Date().toISOString().split('T')[0];
 
+    const username = document.getElementById('settings-lc-username').value.trim();
+    const profileUrl = document.getElementById('settings-lc-url').value.trim();
+
     // sync coding profiles stats object
-    if (dbPortfolio.codingProfiles) {
-      const lcProfile = dbPortfolio.codingProfiles.find(p => p.platform === 'LeetCode');
-      if (lcProfile) {
-        lcProfile.stats.solved = dbPortfolio.stats.leetcode.totalSolved;
-        lcProfile.stats.contestRating = dbPortfolio.stats.leetcode.contestRating;
-      }
+    dbPortfolio.codingProfiles = dbPortfolio.codingProfiles || [];
+    let lcProfile = dbPortfolio.codingProfiles.find(p => p.platform === 'LeetCode');
+    if (!lcProfile) {
+      lcProfile = { platform: 'LeetCode', stats: {} };
+      dbPortfolio.codingProfiles.push(lcProfile);
     }
+    lcProfile.username = username;
+    lcProfile.url = profileUrl || (username ? `https://leetcode.com/${username}` : '');
+    lcProfile.stats = lcProfile.stats || {};
+    lcProfile.stats.solved = dbPortfolio.stats.leetcode.totalSolved;
+    lcProfile.stats.contestRating = dbPortfolio.stats.leetcode.contestRating;
 
     showToast('Saving API stats overrides...', 'info');
     try {
@@ -1697,7 +1775,7 @@ if (btnSaveStats) {
         contact: dbPortfolio.contact || {},
         experience: dbPortfolio.experience || [],
         achievements: dbPortfolio.achievements || [],
-        codingProfiles: dbPortfolio.codingProfiles || []
+        codingProfiles: dbPortfolio.codingProfiles
       };
       
       await profileService.update(profilePayload);

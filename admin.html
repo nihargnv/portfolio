@@ -350,7 +350,10 @@
           
           <!-- API Stats Override Section -->
           <div>
-            <h3 style="font-family:var(--font-display); font-size:1.25rem; margin-bottom:16px;">API Stats Overrides</h3>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+              <h3 style="font-family:var(--font-display); font-size:1.25rem; margin:0;">API Stats Overrides</h3>
+              <button class="btn btn-secondary" id="btn-sync-leetcode" style="font-size:0.85rem; padding:8px 16px;"><i class="fas fa-sync-alt"></i> Sync LeetCode Solved</button>
+            </div>
             <div class="form-row">
               <div class="form-group">
                 <label for="override-lc-solved">LeetCode Total Solved</label>
@@ -359,6 +362,16 @@
               <div class="form-group">
                 <label for="override-lc-rating">LeetCode Contest Rating</label>
                 <input type="number" id="override-lc-rating" class="form-control">
+              </div>
+            </div>
+            <div class="form-row" style="margin-top:12px;">
+              <div class="form-group">
+                <label for="settings-lc-username">LeetCode Username</label>
+                <input type="text" id="settings-lc-username" class="form-control" placeholder="e.g. nihargnv">
+              </div>
+              <div class="form-group">
+                <label for="settings-lc-url">LeetCode Profile URL</label>
+                <input type="text" id="settings-lc-url" class="form-control" placeholder="e.g. https://leetcode.com/nihargnv">
               </div>
             </div>
             <button class="btn btn-secondary" id="btn-save-stats" style="margin-top:16px;"><i class="fas fa-chart-line"></i> Save API Overrides</button>

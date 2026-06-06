@@ -88,6 +88,9 @@ async function initPageRenderer() {
   // Hide loader
   const loader = document.getElementById('loader');
   if (loader) loader.classList.add('hidden');
+
+  // Hydrate live LeetCode stats in background
+  updateLeetcodeLiveStats(portfolio);
 }
 
 // Attach to window for global access
@@ -603,7 +606,7 @@ function renderAchievementsAndProfiles(achievements, codingProfiles, stats) {
               </div>
               <div>
                 <h3 style="margin: 0; font-family: var(--font-display); font-size: 1.35rem; font-weight: 700;">LeetCode Profile & Stats</h3>
-                <span class="profile-username">@${leetcodeProfile ? leetcodeProfile.username : 'nihar-gnv'}</span>
+                <span class="profile-username">@${leetcodeProfile ? leetcodeProfile.username : 'nihargnv'}</span>
               </div>
             </div>
             ${leetcodeProfile ? `
@@ -621,7 +624,7 @@ function renderAchievementsAndProfiles(achievements, codingProfiles, stats) {
               <div class="stats-summary-list" style="margin-top: 0; display: flex; flex-direction: column; gap: 12px;">
                 <div class="profile-stat-item">
                   <span class="profile-stat-label">Total Solved</span>
-                  <span class="profile-stat-val" style="color: #FFA116; font-family: var(--font-mono); font-weight: 600;">${stats.leetcode.totalSolved || 0}</span>
+                  <span id="lc-total-solved-val" class="profile-stat-val" style="color: #FFA116; font-family: var(--font-mono); font-weight: 600;">${stats.leetcode.totalSolved || 0}</span>
                 </div>
                 <div class="profile-stat-item">
                   <span class="profile-stat-label">Contest Rating</span>
@@ -629,7 +632,7 @@ function renderAchievementsAndProfiles(achievements, codingProfiles, stats) {
                 </div>
                 <div class="profile-stat-item">
                   <span class="profile-stat-label">Global Ranking</span>
-                  <span class="profile-stat-val" style="font-family: var(--font-mono); font-weight: 600;">${stats.leetcode.globalRanking || 'N/A'}</span>
+                  <span id="lc-global-ranking-val" class="profile-stat-val" style="font-family: var(--font-mono); font-weight: 600;">${stats.leetcode.globalRanking || 'N/A'}</span>
                 </div>
                 ${leetcodeProfile ? Object.entries(leetcodeProfile.stats).filter(([k]) => k !== 'solved' && k !== 'contestRating').map(([k, v]) => `
                   <div class="profile-stat-item">
@@ -640,7 +643,7 @@ function renderAchievementsAndProfiles(achievements, codingProfiles, stats) {
               </div>
             </div>
           </div>
-          <div class="stats-timestamp">Last updated: ${stats.leetcode.lastUpdated || 'Today'}</div>
+          <div class="stats-timestamp" id="lc-timestamp-val">Last updated: ${stats.leetcode.lastUpdated || 'Today'}</div>
         </div>
 
       </div>
@@ -662,7 +665,11 @@ function drawAutomationCharts(stats) {
     const isDark = document.documentElement.classList.contains('theme-dark');
     const txtColor = isDark ? '#9ca3af' : '#475569';
 
-    new Chart(lcCtx, {
+    if (window.leetcodeChartInstance) {
+      window.leetcodeChartInstance.destroy();
+    }
+
+    window.leetcodeChartInstance = new Chart(lcCtx, {
       type: 'doughnut',
       data: {
         labels: ['Easy', 'Medium', 'Hard'],
@@ -683,6 +690,44 @@ function drawAutomationCharts(stats) {
         }
       }
     });
+  }
+}
+
+async function updateLeetcodeLiveStats(portfolio) {
+  const leetcodeProfile = portfolio.codingProfiles?.find(p => p.platform === 'LeetCode');
+  if (!leetcodeProfile || !leetcodeProfile.username) return;
+
+  try {
+    const response = await fetch(`https://alfa-leetcode-api.onrender.com/userProfile/${leetcodeProfile.username}`);
+    if (!response.ok) return;
+    const data = await response.json();
+
+    if (data.errors && data.errors.length > 0) return;
+    if (data.totalSolved === undefined) return;
+
+    portfolio.stats = portfolio.stats || { leetcode: {} };
+    portfolio.stats.leetcode = portfolio.stats.leetcode || {};
+    portfolio.stats.leetcode.easySolved = data.easySolved || 0;
+    portfolio.stats.leetcode.mediumSolved = data.mediumSolved || 0;
+    portfolio.stats.leetcode.hardSolved = data.hardSolved || 0;
+    portfolio.stats.leetcode.totalSolved = data.totalSolved || 0;
+    portfolio.stats.leetcode.globalRanking = data.ranking || 0;
+    portfolio.stats.leetcode.lastUpdated = new Date().toISOString().split('T')[0];
+
+    // Update DOM values
+    const solvedEl = document.getElementById('lc-total-solved-val');
+    if (solvedEl) solvedEl.textContent = data.totalSolved;
+
+    const rankingEl = document.getElementById('lc-global-ranking-val');
+    if (rankingEl) rankingEl.textContent = data.ranking || 'N/A';
+
+    const timestampEl = document.getElementById('lc-timestamp-val');
+    if (timestampEl) timestampEl.textContent = `Last updated: ${portfolio.stats.leetcode.lastUpdated}`;
+
+    // Redraw Chart
+    drawAutomationCharts(portfolio.stats);
+  } catch (err) {
+    console.warn("Failed to update live LeetCode stats dynamically:", err);
   }
 }
 
