@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Data Migration | Nihar GNV</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .migration-body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .migration-card {
+      max-width: 650px;
+      width: 100%;
+      padding: 40px;
+    }
+    .migration-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .migration-header h1 {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .migration-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+    .log-container {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      height: 300px;
+      overflow-y: auto;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .log-entry {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .log-entry.info { color: var(--text-secondary); }
+    .log-entry.success { color: var(--success-color); }
+    .log-entry.error { color: var(--error-color); font-weight: 600; }
+    
+    .btn-container {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="migration-body">
+
+  <div class="glass-card migration-card">
+    <div class="migration-header">
+      <h1>Firestore Migration</h1>
+      <p>Upload your static JSON data configurations from <code>/data</code> to Firestore collections.</p>
+    </div>
+
+    <div class="log-container" id="log-container">
+      <div class="log-entry info"><i class="fas fa-info-circle"></i> Ready to start. Click the button below to migrate.</div>
+    </div>
+
+    <div class="btn-container">
+      <button class="btn btn-primary" id="start-migration-btn">
+        <i class="fas fa-play"></i> Authenticate & Start Migration
+      </button>
+      <a href="admin.html" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Go to Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { runMigration } from './scripts/migrate-json-to-firestore.js';
+
+    const logContainer = document.getElementById('log-container');
+    const startBtn = document.getElementById('start-migration-btn');
+
+    function addLog(message, type = 'info') {
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${type}`;
+      
+      let icon = 'fa-info-circle';
+      if (type === 'success') icon = 'fa-check-circle';
+      if (type === 'error') icon = 'fa-exclamation-circle';
+
+      entry.innerHTML = `<i class="fas ${icon}"></i> <span>${message}</span>`;
+      logContainer.appendChild(entry);
+      logContainer.scrollTop = logContainer.scrollHeight;
+    }
+
+    startBtn.addEventListener('click', async () => {
+      startBtn.disabled = true;
+      logContainer.innerHTML = '';
+      addLog("Starting migration flow...", "info");
+
+      await runMigration((msg, type) => {
+        addLog(msg, type);
+        if (type === 'error' || msg.includes('Migration completed successfully')) {
+          startBtn.disabled = false;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

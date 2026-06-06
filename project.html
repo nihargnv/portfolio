@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title id="page-title">Project Details | Nihar GNV</title>
+  <meta name="description" id="page-desc" content="Explore project architecture, problem statements, solutions, development timeline, and challenges faced.">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/project.css">
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        Nihar GNV
+        <span class="logo-dot"></span>
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#skills" class="nav-link">Skills</a>
+        <a href="index.html#projects" class="nav-link active">Projects</a>
+        <a href="index.html#experience" class="nav-link">Experience</a>
+        <a href="index.html#certifications" class="nav-link">Certifications</a>
+        <a href="index.html#videos" class="nav-link">Videos</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-icon" id="theme-toggle" aria-label="Toggle dark/light theme">
+          <i class="fas fa-sun" id="theme-icon-sun"></i>
+          <i class="fas fa-moon" id="theme-icon-moon" style="display: none;"></i>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dynamic Project Detail Content -->
+  <main id="project-detail-content">
+    
+    <!-- Hero Block -->
+    <section class="project-hero" id="project-hero-section">
+      <div class="container">
+        <div class="project-hero-grid">
+          <div class="project-hero-info">
+            <span class="section-subtitle" id="proj-category">Category</span>
+            <h1 class="project-title" id="proj-title">Project Name</h1>
+            <p class="project-short-desc" id="proj-short-desc">Short description of the project.</p>
+            
+            <div class="project-quick-meta">
+              <div class="meta-item">
+                <span class="meta-label">Status</span>
+                <span class="meta-value" id="proj-status">Active</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year</span>
+                <span class="meta-value" id="proj-year">2026</span>
+              </div>
+            </div>
+
+            <div class="project-action-btns">
+              <a href="#" target="_blank" class="btn btn-primary" id="proj-demo-btn">
+                <i class="fas fa-external-link-alt"></i> Live Demo
+              </a>
+              <a href="#" target="_blank" class="btn btn-secondary" id="proj-github-btn">
+                <i class="fab fa-github"></i> Repository
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Gallery Carousel -->
+    <section class="project-gallery-section" id="project-gallery-section">
+      <div class="container">
+        <div class="carousel-container" id="carousel">
+          <div class="carousel-track-container">
+            <div class="carousel-track" id="carousel-track">
+              <!-- Render slides dynamically -->
+            </div>
+          </div>
+          <button class="btn-icon carousel-btn carousel-btn-left" id="carousel-prev" aria-label="Previous image">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="btn-icon carousel-btn carousel-btn-right" id="carousel-next" aria-label="Next image">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <div class="carousel-indicators" id="carousel-indicators"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Detail Grid -->
+    <section class="section" style="padding-top: 20px;">
+      <div class="container">
+        <div class="project-content-grid">
+          
+          <div class="project-main-content">
+            
+            <!-- Problem Statement -->
+            <div class="content-block glass-card" id="proj-problem-block">
+              <h3><i class="fas fa-exclamation-circle"></i> The Problem</h3>
+              <p id="proj-problem-text">Description of the problem statement.</p>
+            </div>
+
+            <!-- The Solution -->
+            <div class="content-block glass-card" id="proj-solution-block">
+              <h3><i class="fas fa-check-circle"></i> The Solution</h3>
+              <p id="proj-solution-text">Description of the solution architecture.</p>
+            </div>
+
+            <!-- Features -->
+            <div class="content-block glass-card" id="proj-features-block">
+              <h3><i class="fas fa-list-ul"></i> Key Features</h3>
+              <ul id="proj-features-list">
+                <!-- Rendered dynamically -->
+              </ul>
+            </div>
+
+            <!-- Development Timeline -->
+            <div class="content-block glass-card" id="proj-timeline-block">
+              <h3><i class="fas fa-route"></i> Development Timeline</h3>
+              <div class="timeline-container" id="proj-timeline" style="margin: 32px 0 0 0;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Challenges Faced -->
+            <div class="content-block glass-card" id="proj-challenges-block">
+              <h3><i class="fas fa-puzzle-piece"></i> Challenges & Learnings</h3>
+              <div id="proj-challenges-list">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="project-sidebar">
+            
+            <!-- Tech Stack widget -->
+            <div class="sidebar-widget glass-card">
+              <h3>Tech Stack</h3>
+              <div class="tech-badges-list" id="proj-tech-list">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Achievements widget -->
+            <div class="sidebar-widget glass-card" id="proj-achievements-widget">
+              <h3>Achievements</h3>
+              <ul class="interests-grid" id="proj-achievements-list" style="display: flex; flex-direction: column; gap: 12px;">
+                <!-- Rendered dynamically -->
+              </ul>
+            </div>
+
+            <!-- Future Scope widget -->
+            <div class="sidebar-widget glass-card" id="proj-future-widget">
+              <h3>Future Scope</h3>
+              <p id="proj-future-text" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Description of future enhancements.</p>
+            </div>
+
+            <!-- YouTube Video Embeds widget -->
+            <div class="sidebar-widget glass-card" id="proj-videos-widget">
+              <h3>Video Demonstration</h3>
+              <div class="youtube-demos-list" id="proj-videos-list">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Projects Section -->
+    <section class="related-projects-section" id="related-projects-section">
+      <div class="container">
+        <span class="section-subtitle">Discover More</span>
+        <h2 class="section-title" style="margin-bottom: 0;">Related Projects</h2>
+        <div class="related-projects-grid" id="related-projects-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="#" class="logo">Nihar GNV<span class="logo-dot"></span></a>
+        <div class="footer-socials" id="footer-socials"></div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Nihar GNV. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="admin.html">CMS Dashboard</a>
+          <a href="sitemap.xml">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close"><i class="fas fa-times"></i></span>
+    <span class="lightbox-nav lightbox-prev" id="lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+    <div class="lightbox-content-wrapper">
+      <img src="" alt="" class="lightbox-img" id="lightbox-img">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+    <span class="lightbox-nav lightbox-next" id="lightbox-next"><i class="fas fa-chevron-right"></i></span>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/renderer.js"></script>
+  <script type="module" src="js/project.js"></script>
+</body>
+</html>

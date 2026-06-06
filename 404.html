@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Nihar GNV</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .error-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+    }
+    .error-card {
+      max-width: 500px;
+      padding: 50px 40px;
+    }
+    .error-code {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .error-title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .error-message {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow Blocks -->
+  <div class="ambient-glow" style="top: 20%; left: 10%;"></div>
+  <div class="ambient-glow" style="bottom: 20%; right: 10%;"></div>
+
+  <main class="error-wrapper">
+    <div class="glass-card error-card">
+      <div class="error-code text-gradient">404</div>
+      <h1 class="error-title">Lost in Space</h1>
+      <p class="error-message">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+      
+      <div id="redirect-timer" style="margin-bottom: 24px; font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-muted);">
+        Redirecting to home in <span id="countdown">10</span> seconds...
+      </div>
+
+      <div style="display: flex; gap: 16px; justify-content: center;">
+        <a href="index.html" class="btn btn-primary"><i class="fas fa-home"></i> Go Home</a>
+        <a href="index.html#projects" class="btn btn-secondary"><i class="fas fa-th-large"></i> Projects</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Countdown and automatic redirect
+    let count = 10;
+    const countdownEl = document.getElementById('countdown');
+    
+    const interval = setInterval(() => {
+      count--;
+      if (countdownEl) countdownEl.textContent = count;
+      if (count <= 0) {
+        clearInterval(interval);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

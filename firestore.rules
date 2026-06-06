@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if the user is authenticated and is registered in the admins collection
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == 'nihargnv@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.token.email))
+      );
+    }
+
+    // Admins collection: admins can read/write everything. 
+    // Authorized users can read their own admin record to verify their permissions.
+    match /admins/{email} {
+      allow read: if request.auth != null && request.auth.token.email == email;
+      allow write: if isAdmin();
+    }
+
+    // Portfolio configurations and profile data: public read, admin write
+    match /profile/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // System theme & SEO settings: public read, admin write
+    match /settings/{document} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Showcased projects: public read, admin write
+    match /projects/{project} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Professional skills: public read, admin write
+    match /skills/{skill} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Homepage custom dynamic sections: public read, admin write
+    match /sections/{section} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // YouTube showcase videos: public read, admin write
+    match /videos/{video} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Professional certifications: public read, admin write
+    match /certifications/{cert} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

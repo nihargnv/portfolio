@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Admin Dashboard | Nihar GNV</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- Admin Login Overlay -->
+  <div class="admin-login-wrapper" id="login-overlay">
+    <div class="glass-card login-card" style="text-align: center; max-width: 400px; padding: 40px;">
+      <div class="login-header" style="margin-bottom: 24px;">
+        <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 800; margin-bottom: 8px;">CMS Dashboard</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Authenticate using Google to access CMS data controls.</p>
+      </div>
+      <button id="google-login-btn" class="btn btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 600;">
+        <i class="fab fa-google" style="font-size: 1.1rem;"></i> Sign in with Google
+      </button>
+      <div id="login-error-msg" style="color: var(--error-color); margin-top: 16px; font-size: 0.85rem; display: none;"></div>
+    </div>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="admin-sidebar-header">
+      <a href="index.html" class="logo">
+        Nihar GNV
+        <span class="logo-dot"></span>
+      </a>
+      <button class="btn-icon" id="admin-sidebar-close" style="display: none;"><i class="fas fa-times"></i></button>
+    </div>
+    
+    <nav class="admin-sidebar-menu">
+      <div class="admin-menu-item active" data-target="panel-overview">
+        <i class="fas fa-chart-line"></i> Overview
+      </div>
+      <div class="admin-menu-item" data-target="panel-profile">
+        <i class="fas fa-user-edit"></i> Profile & Hero
+      </div>
+      <div class="admin-menu-item" data-target="panel-skills">
+        <i class="fas fa-tools"></i> Skills Manager
+      </div>
+      <div class="admin-menu-item" data-target="panel-projects">
+        <i class="fas fa-project-diagram"></i> Project System
+      </div>
+      <div class="admin-menu-item" data-target="panel-videos">
+        <i class="fas fa-video"></i> Video Showcase
+      </div>
+      <div class="admin-menu-item" data-target="panel-sections">
+        <i class="fas fa-layer-group"></i> Dynamic Builder
+      </div>
+      <div class="admin-menu-item" data-target="panel-certs">
+        <i class="fas fa-certificate"></i> Certifications
+      </div>
+      <div class="admin-menu-item" data-target="panel-experience">
+        <i class="fas fa-briefcase"></i> Experience Manager
+      </div>
+      <div class="admin-menu-item" data-target="panel-education">
+        <i class="fas fa-graduation-cap"></i> Education Manager
+      </div>
+      <div class="admin-menu-item" data-target="panel-settings">
+        <i class="fas fa-sliders-h"></i> Settings
+      </div>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <div class="admin-user-info">
+        <div class="admin-avatar"></div>
+        <div>
+          <span style="font-weight:600; display:block; font-size:0.9rem;">Administrator</span>
+          <span style="font-size:0.75rem; color:var(--text-muted);">Workspace Session</span>
+        </div>
+      </div>
+      <button class="admin-logout-btn" id="admin-logout" title="Log Out"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </aside>
+
+  <!-- Main Content Layout -->
+  <main class="admin-main">
+    <header class="admin-topbar">
+      <div style="display:flex; align-items:center; gap: 16px;">
+        <button class="btn-icon" id="admin-sidebar-toggle" style="display: none;"><i class="fas fa-bars"></i></button>
+        <h1 class="admin-page-title" id="admin-header-title">Overview</h1>
+      </div>
+      <div class="admin-topbar-actions">
+        <!-- Live view & Theme settings -->
+        <a href="index.html" target="_blank" class="btn btn-secondary"><i class="fas fa-eye"></i> View Site</a>
+      </div>
+    </header>
+
+    <div class="admin-content-area">
+
+      <!-- ==============================================
+           PANEL: OVERVIEW
+           ============================================== -->
+      <section class="admin-panel active" id="panel-overview">
+        <div class="admin-stats-overview">
+          <div class="glass-card admin-stat-card">
+            <span class="admin-stat-card-header">Total Skills</span>
+            <div class="admin-stat-card-val" id="stat-total-skills">0</div>
+          </div>
+          <div class="glass-card admin-stat-card">
+            <span class="admin-stat-card-header">Total Projects</span>
+            <div class="admin-stat-card-val" id="stat-total-projects">0</div>
+          </div>
+          <div class="glass-card admin-stat-card">
+            <span class="admin-stat-card-header">YouTube Videos</span>
+            <div class="admin-stat-card-val" id="stat-total-videos">0</div>
+          </div>
+          <div class="glass-card admin-stat-card">
+            <span class="admin-stat-card-header">Custom Sections</span>
+            <div class="admin-stat-card-val" id="stat-total-sections">0</div>
+          </div>
+        </div>
+
+        <div class="glass-card" style="padding: 40px; margin-bottom: 32px;">
+          <h2 style="font-family:var(--font-display); font-size:1.5rem; margin-bottom: 16px;">Welcome to your CMS Dashboard</h2>
+          <p style="color:var(--text-secondary); margin-bottom: 24px; max-width: 700px;">Here you can visually modify your personal biography, skill ratings, showcase projects, YouTube video listings, and add infinite custom sections on your homepage. <strong>All files are stored locally in your browser session memory. To persist updates to your website, click the "Save & Export JSON" button at the top-right and upload/commit the exported files into your GitHub Pages repo.</strong></p>
+          
+          <h3 style="font-size:1.1rem; margin-bottom: 12px;">Deployment Checklist:</h3>
+          <ul class="interests-grid" style="grid-template-columns:1fr; font-size:0.95rem; color:var(--text-secondary); gap: 8px;">
+            <li><i class="fas fa-check" style="color:var(--success-color);"></i> Modify any section cards using the dashboard panels.</li>
+            <li><i class="fas fa-check" style="color:var(--success-color);"></i> Click the "Save & Export JSON" button at the top-right.</li>
+            <li><i class="fas fa-check" style="color:var(--success-color);"></i> Replace the files inside <code>/data</code> directory (e.g. <code>portfolio.json</code>, <code>projects.json</code>) with the downloaded ones.</li>
+            <li><i class="fas fa-check" style="color:var(--success-color);"></i> Push the commits to your GitHub Pages repository. The changes will reflect immediately!</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           PANEL: PROFILE & HERO
+           ============================================== -->
+      <section class="admin-panel" id="panel-profile">
+        <form id="form-profile">
+          <div class="glass-card" style="padding:40px; display:flex; flex-direction:column; gap:24px;">
+            <h3 style="font-family:var(--font-display); font-size:1.25rem;">Meta Details</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="meta-title">Page Title</label>
+                <input type="text" id="meta-title" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="meta-url">Site Base URL</label>
+                <input type="text" id="meta-url" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="meta-desc">Page Meta Description</label>
+              <textarea id="meta-desc" class="form-control" required></textarea>
+            </div>
+
+            <h3 style="font-family:var(--font-display); font-size:1.25rem; margin-top:16px;">Hero Elements</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hero-name">Name</label>
+                <input type="text" id="hero-name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="hero-resume">Resume PDF Path</label>
+                <input type="text" id="hero-resume" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="hero-img">Avatar Image Path</label>
+                <input type="text" id="hero-img" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="hero-titles">Rotating Roles (Comma separated)</label>
+                <input type="text" id="hero-titles" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="hero-tagline">Hero Tagline</label>
+              <textarea id="hero-tagline" class="form-control" required></textarea>
+            </div>
+
+            <h3 style="font-family:var(--font-display); font-size:1.25rem; margin-top:16px;">Biography & Interests</h3>
+            <div class="form-group">
+              <label for="bio-main">Bio Text</label>
+              <textarea id="bio-main" class="form-control" style="min-height:100px;" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="bio-summary">Bio Summary (Under Bio)</label>
+              <textarea id="bio-summary" class="form-control" style="min-height:100px;" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="bio-interests">Interests (Comma separated)</label>
+              <input type="text" id="bio-interests" class="form-control" required>
+            </div>
+
+            <h3 style="font-family:var(--font-display); font-size:1.25rem; margin-top:16px;">Contact Detail Links</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-phone">Phone Number</label>
+                <input type="text" id="contact-phone" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-location">Location</label>
+                <input type="text" id="contact-location" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-formsubmit">FormSubmit Redirect Email</label>
+                <input type="email" id="contact-formsubmit" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="social-github">GitHub Link</label>
+                <input type="text" id="social-github" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="social-linkedin">LinkedIn Link</label>
+                <input type="text" id="social-linkedin" class="form-control">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="social-twitter">Twitter Link</label>
+                <input type="text" id="social-twitter" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="social-youtube">YouTube Link</label>
+                <input type="text" id="social-youtube" class="form-control">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top:16px; align-self:flex-start;">
+              <i class="fas fa-save"></i> Save Profile Details
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ==============================================
+           PANEL: SKILLS MANAGER
+           ============================================== -->
+      <section class="admin-panel" id="panel-skills">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 style="font-size:1.25rem; font-family:var(--font-display);">All Skills</h2>
+          <button class="btn btn-primary" id="btn-add-skill"><i class="fas fa-plus"></i> Add New Skill</button>
+        </div>
+        
+        <div class="draggable-list" id="skills-list">
+          <!-- Dynamically populated skills list -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           PANEL: PROJECTS SYSTEM
+           ============================================== -->
+      <section class="admin-panel" id="panel-projects">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 style="font-size:1.25rem; font-family:var(--font-display);">All Showcase Projects</h2>
+          <button class="btn btn-primary" id="btn-add-project"><i class="fas fa-plus"></i> Add New Project</button>
+        </div>
+
+        <div class="admin-card-grid" id="projects-list">
+          <!-- Dynamically populated project cards -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           PANEL: VIDEOS SHOWCASE
+           ============================================== -->
+      <section class="admin-panel" id="panel-videos">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 style="font-size:1.25rem; font-family:var(--font-display);">YouTube Videos list</h2>
+          <button class="btn btn-primary" id="btn-add-video"><i class="fas fa-plus"></i> Add New Video</button>
+        </div>
+
+        <div class="admin-card-grid" id="videos-list">
+          <!-- Dynamically populated video cards -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           PANEL: DYNAMIC BUILDER (CUSTOM SECTIONS)
+           ============================================== -->
+      <section class="admin-panel" id="panel-sections">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 style="font-size:1.25rem; font-family:var(--font-display);">Dynamic Homepage Sections</h2>
+          <button class="btn btn-primary" id="btn-add-section"><i class="fas fa-plus"></i> Add Custom Section</button>
+        </div>
+
+        <div class="draggable-list" id="sections-list">
+          <!-- Drag-and-drop custom sections manager -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           PANEL: CERTIFICATIONS
+           ============================================== -->
+      <section class="admin-panel" id="panel-certs">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 style="font-size:1.25rem; font-family:var(--font-display);">Certifications</h2>
+          <button class="btn btn-primary" id="btn-add-cert"><i class="fas fa-plus"></i> Add Certification</button>
+        </div>
+
+        <div class="admin-card-grid" id="certs-list">
+          <!-- Certifications listing -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           PANEL: EXPERIENCE MANAGER
+           ============================================== -->
+      <section class="admin-panel" id="panel-experience">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 style="font-size:1.25rem; font-family:var(--font-display);">Work Experience</h2>
+          <button class="btn btn-primary" id="btn-add-experience"><i class="fas fa-plus"></i> Add New Experience</button>
+        </div>
+        
+        <div class="draggable-list" id="experience-list">
+          <!-- Dynamically populated experience list -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           PANEL: EDUCATION MANAGER
+           ============================================== -->
+      <section class="admin-panel" id="panel-education">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h2 style="font-size:1.25rem; font-family:var(--font-display);">Education Details</h2>
+          <button class="btn btn-primary" id="btn-add-education"><i class="fas fa-plus"></i> Add New Education</button>
+        </div>
+        
+        <div class="draggable-list" id="education-list">
+          <!-- Dynamically populated education list -->
+        </div>
+      </section>
+
+      <!-- ==============================================
+           PANEL: SETTINGS (PASSWORDS, ACCENTS, STATS OVERRIDES)
+           ============================================== -->
+      <section class="admin-panel" id="panel-settings">
+        <div class="glass-card" style="padding:40px; display:flex; flex-direction:column; gap:32px;">
+          
+          <!-- API Stats Override Section -->
+          <div>
+            <h3 style="font-family:var(--font-display); font-size:1.25rem; margin-bottom:16px;">API Stats Overrides</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="override-lc-solved">LeetCode Total Solved</label>
+                <input type="number" id="override-lc-solved" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="override-lc-rating">LeetCode Contest Rating</label>
+                <input type="number" id="override-lc-rating" class="form-control">
+              </div>
+            </div>
+            <button class="btn btn-secondary" id="btn-save-stats" style="margin-top:16px;"><i class="fas fa-chart-line"></i> Save API Overrides</button>
+          </div>
+
+          <div style="height:1px; background:var(--border-color);"></div>
+
+          <!-- Color settings -->
+          <div>
+            <h3 style="font-family:var(--font-display); font-size:1.25rem; margin-bottom:16px;">Color Theme Preferences</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="settings-accent">Primary Accent Hex Code</label>
+                <input type="color" id="settings-accent" class="form-control" style="height:50px; padding:4px;">
+              </div>
+              <div class="form-group">
+                <label for="settings-theme">Default Theme Mode</label>
+                <select id="settings-theme" class="form-control">
+                  <option value="dark">Force Dark Mode</option>
+                  <option value="light">Force Light Mode</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-secondary" id="btn-save-theme" style="margin-top:16px;"><i class="fas fa-paint-brush"></i> Update Accent & Mode</button>
+          </div>
+
+          <div style="height:1px; background:var(--border-color);"></div>
+
+          <!-- Manage Administrators block -->
+          <div>
+            <h3 style="font-family:var(--font-display); font-size:1.25rem; margin-bottom:16px;">Manage Administrators</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="settings-new-admin">Add Admin Email</label>
+                <input type="email" id="settings-new-admin" class="form-control" placeholder="colleague@example.com">
+              </div>
+              <div class="form-group">
+                <label for="settings-remove-admin">Remove Admin Email</label>
+                <input type="email" id="settings-remove-admin" class="form-control" placeholder="former-colleague@example.com">
+              </div>
+            </div>
+            <button class="btn btn-secondary" id="btn-manage-admins" style="margin-top:16px;"><i class="fas fa-user-shield"></i> Update Admins</button>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==============================================
+       MODALS: DYNAMIC EDIT DIALOGS FOR CRUD
+       ============================================== -->
+  
+  <!-- 1. SKILL MODAL -->
+  <div class="admin-modal" id="modal-skill">
+    <div class="glass-card admin-modal-content">
+      <div class="admin-modal-header">
+        <h3 id="skill-modal-title">Add Skill</h3>
+        <span class="admin-modal-close" id="btn-close-skill-modal"><i class="fas fa-times"></i></span>
+      </div>
+      <form id="form-skill">
+        <input type="hidden" id="skill-index">
+        <div class="form-group">
+          <label for="skill-name-input">Skill Name</label>
+          <input type="text" id="skill-name-input" class="form-control" placeholder="Python" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="skill-icon-input">FontAwesome Icon Class</label>
+            <input type="text" id="skill-icon-input" class="form-control" placeholder="fab fa-python" required>
+          </div>
+          <div class="form-group">
+            <label for="skill-category-input">Category</label>
+            <select id="skill-category-input" class="form-control" required>
+              <option value="Programming">Programming</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Cloud">Cloud</option>
+              <option value="AI / ML">AI / ML</option>
+              <option value="Hardware">Hardware</option>
+              <option value="DevOps">DevOps</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="skill-level-input">Proficiency Percentage (0-100)</label>
+          <input type="number" id="skill-level-input" class="form-control" min="0" max="100" placeholder="90" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Save Skill</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. PROJECT MODAL -->
+  <div class="admin-modal" id="modal-project">
+    <div class="glass-card admin-modal-content">
+      <div class="admin-modal-header">
+        <h3 id="project-modal-title">Add Project</h3>
+        <span class="admin-modal-close" id="btn-close-project-modal"><i class="fas fa-times"></i></span>
+      </div>
+      <form id="form-project">
+        <input type="hidden" id="project-slug-id">
+        <input type="hidden" id="project-edit-mode"> <!-- edit or create -->
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="proj-title-input">Project Title</label>
+            <input type="text" id="proj-title-input" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="proj-slug-input">Project Slug ID</label>
+            <input type="text" id="proj-slug-input" class="form-control" placeholder="netradarshak" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="proj-cat-input">Category</label>
+            <input type="text" id="proj-cat-input" class="form-control" placeholder="AI / Computer Vision" required>
+          </div>
+          <div class="form-group">
+            <label for="proj-year-input">Year</label>
+            <input type="text" id="proj-year-input" class="form-control" placeholder="2026" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="proj-status-input">Status</label>
+            <select id="proj-status-input" class="form-control">
+              <option value="Completed">Completed</option>
+              <option value="Active">Active</option>
+              <option value="In Progress">In Progress</option>
+            </select>
+          </div>
+          <div class="form-group" style="display:flex; align-items:center; gap: 12px; margin-top:28px;">
+            <input type="checkbox" id="proj-featured-input" style="width:20px; height:20px;">
+            <label for="proj-featured-input" style="margin-bottom:0; cursor:pointer;">Featured Project</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-sdesc-input">Short Description</label>
+          <input type="text" id="proj-sdesc-input" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-problem-input">Problem Statement</label>
+          <textarea id="proj-problem-input" class="form-control" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-solution-input">The Solution</label>
+          <textarea id="proj-solution-input" class="form-control" required></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="proj-demo-input">Demo Link</label>
+            <input type="text" id="proj-demo-input" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="proj-github-input">GitHub Repo Link</label>
+            <input type="text" id="proj-github-input" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-tags-input">Search Tags (Comma separated)</label>
+          <input type="text" id="proj-tags-input" class="form-control" placeholder="AI, Computer Vision, YOLOv8" required>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-techs-input">Tech Stack List (Comma separated)</label>
+          <input type="text" id="proj-techs-input" class="form-control" placeholder="Python, PyTorch, React, Docker" required>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-features-input-text">Features Checklist (One per line)</label>
+          <textarea id="proj-features-input-text" class="form-control" style="min-height:100px;" placeholder="Real-time object tracking&#10;Analytics charts generation" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-timeline-input-text">Development Timeline Events (Format: Date | Event Title | Event Description - One per line)</label>
+          <textarea id="proj-timeline-input-text" class="form-control" style="min-height:100px;" placeholder="Week 1 | Research | Studied state of the art models&#10;Week 2 | Dev | Coded YOLO engine"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-challenges-input-text">Challenges Faced (One per line)</label>
+          <textarea id="proj-challenges-input-text" class="form-control" style="min-height:80px;" placeholder="Quantization reduced accuracy by 2%&#10;Tracking was laggy on standard CPU"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-achievements-input-text">Achievements (One per line)</label>
+          <textarea id="proj-achievements-input-text" class="form-control" style="min-height:80px;" placeholder="🏆 1st place in AI Hackathon&#10;📈 Reduced inference latency by 40%"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-future-input">Future Scope</label>
+          <textarea id="proj-future-input" class="form-control" placeholder="Integration with physical traffic light microcontrollers."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-images-input-text">Screenshots Image Links (Format: Image Path | Caption - One per line)</label>
+          <textarea id="proj-images-input-text" class="form-control" style="min-height:100px;" placeholder="assets/images/projects/netradarshak-1.jpg | Traffic Density Heatmap"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="proj-vids-input-text">YouTube Video Links (Format: YouTube ID | Title - One per line)</label>
+          <textarea id="proj-vids-input-text" class="form-control" style="min-height:80px;" placeholder="dQw4w9WgXcQ | NeTraDarshak Video Walkthrough"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Save Project details</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. YOUTUBE SHOWCASE VIDEO MODAL -->
+  <div class="admin-modal" id="modal-video">
+    <div class="glass-card admin-modal-content">
+      <div class="admin-modal-header">
+        <h3 id="video-modal-title">Add YouTube Video</h3>
+        <span class="admin-modal-close" id="btn-close-video-modal"><i class="fas fa-times"></i></span>
+      </div>
+      <form id="form-video">
+        <input type="hidden" id="video-index">
+        <div class="form-group">
+          <label for="video-title-input">Video Title</label>
+          <input type="text" id="video-title-input" class="form-control" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="video-id-input">YouTube Video ID (11 characters)</label>
+            <input type="text" id="video-id-input" class="form-control" placeholder="dQw4w9WgXcQ" required>
+          </div>
+          <div class="form-group">
+            <label for="video-cat-input">Category</label>
+            <input type="text" id="video-cat-input" class="form-control" placeholder="Tutorial" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="video-desc-input">Short Description</label>
+          <textarea id="video-desc-input" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="video-tags-input">Tags (Comma separated)</label>
+          <input type="text" id="video-tags-input" class="form-control" placeholder="YOLOv8, AI, DevOps">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Save Video Details</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. CUSTOM HOMEPAGE SECTION BUILDER MODAL -->
+  <div class="admin-modal" id="modal-section">
+    <div class="glass-card admin-modal-content">
+      <div class="admin-modal-header">
+        <h3 id="section-modal-title">Create Homepage Custom Section</h3>
+        <span class="admin-modal-close" id="btn-close-section-modal"><i class="fas fa-times"></i></span>
+      </div>
+      <form id="form-section">
+        <input type="hidden" id="section-id-input">
+        <input type="hidden" id="section-edit-mode">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="section-name-title">Section Headline Title</label>
+            <input type="text" id="section-name-title" class="form-control" placeholder="My Journey in AI">
+          </div>
+          <div class="form-group">
+            <label for="section-type-select">Content Layout Type</label>
+            <select id="section-type-select" class="form-control" required>
+              <option value="rich-text">Rich Text (Quill.js Editor)</option>
+              <option value="timeline">Timeline Journey</option>
+              <option value="statistics">Counter Statistics Grid</option>
+              <option value="gallery">Masonry Image Gallery</option>
+              <option value="youtube">YouTube Videos Row</option>
+              <option value="quote">Inspirational Quote</option>
+              <option value="cta">Call-to-Action Banner</option>
+              <option value="code-block">Syntax Highlighting Code block</option>
+              <option value="image-banner">Image Banner Screen</option>
+              <option value="divider">Horizontal Line Divider</option>
+              <option value="custom-html">Raw HTML Injection Block</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Layout Editors (Switched via JS) -->
+        <div id="section-layout-editors" style="margin-top: 16px;">
+          
+          <!-- Rich Text Container -->
+          <div class="layout-editor-subpanel" id="editor-rich-text">
+            <label>Rich Text Content</label>
+            <div class="editor-container">
+              <div id="quill-editor"></div>
+            </div>
+          </div>
+
+          <!-- Timeline items CRUD text -->
+          <div class="layout-editor-subpanel" id="editor-timeline" style="display:none;">
+            <label for="section-timeline-text">Timeline Items (Format: Date | Item Title | Description - One per line)</label>
+            <textarea id="section-timeline-text" class="form-control" style="min-height:120px;" placeholder="2022 | Start | Commenced learn.&#10;2024 | First Job | Joined AI agency."></textarea>
+          </div>
+
+          <!-- Statistics CRUD -->
+          <div class="layout-editor-subpanel" id="editor-statistics" style="display:none;">
+            <label for="section-stats-text">Custom Stats Counters (Format: Icon Class | Stat Number Value | Title Label - One per line)</label>
+            <textarea id="section-stats-text" class="form-control" style="min-height:100px;" placeholder="fa-code | 150K+ | Lines of Code&#10;fa-clock | 3,500+ | Working Hours"></textarea>
+          </div>
+
+          <!-- Gallery Grid -->
+          <div class="layout-editor-subpanel" id="editor-gallery" style="display:none;">
+            <label for="section-gallery-text">Gallery Screenshots (Format: Image URL | Caption - One per line)</label>
+            <textarea id="section-gallery-text" class="form-control" style="min-height:100px;" placeholder="assets/images/projects/netradarshak-2.jpg | Traffic detection model output"></textarea>
+          </div>
+
+          <!-- YouTube Embed grid -->
+          <div class="layout-editor-subpanel" id="editor-youtube" style="display:none;">
+            <label for="section-youtube-text">YouTube Videos (Format: Video ID | Video title - One per line)</label>
+            <textarea id="section-youtube-text" class="form-control" style="min-height:100px;" placeholder="dQw4w9WgXcQ | YOLOv8 pipeline guide"></textarea>
+          </div>
+
+          <!-- Quote Block -->
+          <div class="layout-editor-subpanel" id="editor-quote" style="display:none;">
+            <div class="form-group">
+              <label for="quote-text-input">Quote Text</label>
+              <textarea id="quote-text-input" class="form-control" placeholder="Any sufficiently advanced technology is indistinguishable from magic."></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="quote-author-input">Author Name</label>
+                <input type="text" id="quote-author-input" class="form-control" placeholder="Arthur C. Clarke">
+              </div>
+              <div class="form-group">
+                <label for="quote-role-input">Author Description / Role</label>
+                <input type="text" id="quote-role-input" class="form-control" placeholder="Author & Futurist">
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Banner -->
+          <div class="layout-editor-subpanel" id="editor-cta" style="display:none;">
+            <div class="form-group">
+              <label for="cta-heading-input">CTA Heading Title</label>
+              <input type="text" id="cta-heading-input" class="form-control" placeholder="Let's Build Something Together">
+            </div>
+            <div class="form-group">
+              <label for="cta-subheading-input">Sub-heading Tagline</label>
+              <textarea id="cta-subheading-input" class="form-control" placeholder="Open to collaborations and full time roles."></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cta-pbtn-label">Primary Button Label</label>
+                <input type="text" id="cta-pbtn-label" class="form-control" placeholder="Get In Touch">
+              </div>
+              <div class="form-group">
+                <label for="cta-pbtn-url">Primary Button Link URL</label>
+                <input type="text" id="cta-pbtn-url" class="form-control" placeholder="#contact">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cta-sbtn-label">Secondary Button Label</label>
+                <input type="text" id="cta-sbtn-label" class="form-control" placeholder="Download CV">
+              </div>
+              <div class="form-group">
+                <label for="cta-sbtn-url">Secondary Button Link URL</label>
+                <input type="text" id="cta-sbtn-url" class="form-control" placeholder="assets/resume/resume.pdf">
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Block with Syntax -->
+          <div class="layout-editor-subpanel" id="editor-code-block" style="display:none;">
+            <label for="code-block-input">Source Code Content</label>
+            <textarea id="code-block-input" class="form-control" style="min-height:150px; font-family:var(--font-mono); font-size:0.9rem;" placeholder="import tensorflow as tf&#10;model = tf.keras.models.Sequential()"></textarea>
+          </div>
+
+          <!-- Image Banner -->
+          <div class="layout-editor-subpanel" id="editor-image-banner" style="display:none;">
+            <div class="form-group">
+              <label for="ib-url">Image banner URL path</label>
+              <input type="text" id="ib-url" class="form-control" placeholder="assets/images/banner.jpg">
+            </div>
+            <div class="form-group">
+              <label for="ib-title">Overlay Headline Title</label>
+              <input type="text" id="ib-title" class="form-control" placeholder="AI Hackathon runner ups 2024">
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="layout-editor-subpanel" id="editor-divider" style="display:none;">
+            <p style="font-size:0.9rem; color:var(--text-muted);">This is a standard section separator line. No inputs needed.</p>
+          </div>
+
+          <!-- Custom HTML -->
+          <div class="layout-editor-subpanel" id="editor-custom-html" style="display:none;">
+            <label for="custom-html-input">Raw HTML / Embed Code</label>
+            <textarea id="custom-html-input" class="form-control" style="min-height:150px; font-family:var(--font-mono); font-size:0.9rem;" placeholder="<div class='custom-alert'>Important message</div>"></textarea>
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:24px;">Save Custom Section</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. CERTIFICATION MODAL -->
+  <div class="admin-modal" id="modal-cert">
+    <div class="glass-card admin-modal-content">
+      <div class="admin-modal-header">
+        <h3 id="cert-modal-title">Add Certification</h3>
+        <span class="admin-modal-close" id="btn-close-cert-modal"><i class="fas fa-times"></i></span>
+      </div>
+      <form id="form-cert">
+        <input type="hidden" id="cert-index">
+        <div class="form-group">
+          <label for="cert-title-input">Certification Title</label>
+          <input type="text" id="cert-title-input" class="form-control" placeholder="AWS Certified Cloud Practitioner" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cert-issuer-input">Issuer Institution</label>
+            <input type="text" id="cert-issuer-input" class="form-control" placeholder="Amazon Web Services" required>
+          </div>
+          <div class="form-group">
+            <label for="cert-date-input">Year of Issue</label>
+            <input type="text" id="cert-date-input" class="form-control" placeholder="2024" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cert-url-input">Credential URL Link</label>
+            <input type="text" id="cert-url-input" class="form-control" placeholder="https://aws.amazon.com/verify">
+          </div>
+          <div class="form-group">
+            <label for="cert-image-input">Certificate Preview Image Path</label>
+            <input type="text" id="cert-image-input" class="form-control" placeholder="assets/images/certs/aws.jpg">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Save Certification</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. EXPERIENCE MODAL -->
+  <div class="admin-modal" id="modal-experience">
+    <div class="glass-card admin-modal-content">
+      <div class="admin-modal-header">
+        <h3 id="experience-modal-title">Add Work Experience</h3>
+        <span class="admin-modal-close" id="btn-close-experience-modal"><i class="fas fa-times"></i></span>
+      </div>
+      <form id="form-experience">
+        <input type="hidden" id="experience-index">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="exp-company-input">Company Name</label>
+            <input type="text" id="exp-company-input" class="form-control" placeholder="AI Research Lab" required>
+          </div>
+          <div class="form-group">
+            <label for="exp-role-input">Role / Title</label>
+            <input type="text" id="exp-role-input" class="form-control" placeholder="AI / ML Engineer Intern" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="exp-duration-input">Duration</label>
+            <input type="text" id="exp-duration-input" class="form-control" placeholder="Jun 2024 – Aug 2024" required>
+          </div>
+          <div class="form-group">
+            <label for="exp-location-input">Location</label>
+            <input type="text" id="exp-location-input" class="form-control" placeholder="Remote" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="exp-type-input">Job Type</label>
+            <select id="exp-type-input" class="form-control" required>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+              <option value="Internship">Internship</option>
+              <option value="Freelance">Freelance</option>
+              <option value="Contract">Contract</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exp-desc-input">Description / Key Responsibilities</label>
+          <textarea id="exp-desc-input" class="form-control" style="min-height: 100px;" placeholder="Developed and deployed machine learning models..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="exp-tech-input">Technologies Used (Comma separated)</label>
+          <input type="text" id="exp-tech-input" class="form-control" placeholder="Python, TensorFlow, OpenCV" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Save Experience</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. EDUCATION MODAL -->
+  <div class="admin-modal" id="modal-education">
+    <div class="glass-card admin-modal-content">
+      <div class="admin-modal-header">
+        <h3 id="education-modal-title">Add Education</h3>
+        <span class="admin-modal-close" id="btn-close-education-modal"><i class="fas fa-times"></i></span>
+      </div>
+      <form id="form-education">
+        <input type="hidden" id="education-index">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edu-degree-input">Degree / Field of Study</label>
+            <input type="text" id="edu-degree-input" class="form-control" placeholder="B.S. in Computer Science" required>
+          </div>
+          <div class="form-group">
+            <label for="edu-inst-input">Institution / School Name</label>
+            <input type="text" id="edu-inst-input" class="form-control" placeholder="Stanford University" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="edu-year-input">Year / Duration</label>
+            <input type="text" id="edu-year-input" class="form-control" placeholder="2021 – 2025" required>
+          </div>
+          <div class="form-group">
+            <label for="edu-grade-input">Grade / GPA (Optional)</label>
+            <input type="text" id="edu-grade-input" class="form-control" placeholder="GPA: 3.9/4.0">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="edu-icon-input">Icon Class (FontAwesome)</label>
+          <input type="text" id="edu-icon-input" class="form-control" placeholder="fa-graduation-cap" value="fa-graduation-cap">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Save Education</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Admin Scripts -->
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

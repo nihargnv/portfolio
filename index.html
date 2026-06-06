@@ -1,329 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nihar Portfolio</title>
-    <link rel="stylesheet" href="CSS/edu.css" />
-    <link rel="stylesheet" href="styles.css" />
+<html lang="en" class="theme-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Nihar GNV | AI Engineer & Full Stack Developer</title>
+  <meta name="title" content="Nihar GNV | AI Engineer & Full Stack Developer">
+  <meta name="description" content="Personal portfolio of Nihar GNV — AI Engineer, Full Stack Developer, and Hackathon Builder crafting intelligent systems at the intersection of AI, web, and hardware.">
+  <meta name="keywords" content="AI Engineer, Full Stack Developer, Portfolio, Nihar GNV, Machine Learning, Embedded Systems, Hackathon">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gnv-nihar.github.io/">
+  <meta property="og:title" content="Nihar GNV | AI Engineer & Full Stack Developer">
+  <meta property="og:description" content="Personal portfolio of Nihar GNV — AI Engineer, Full Stack Developer, and Hackathon Builder crafting intelligent systems.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
-    / >
-    <link rel="shortcut icon" href="favicon_n_img.png" type="image/x-icon">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://gnv-nihar.github.io/">
+  <meta property="twitter:title" content="Nihar GNV | AI Engineer & Full Stack Developer">
+  <meta property="twitter:description" content="Personal portfolio of Nihar GNV — AI Engineer, Full Stack Developer, and Hackathon Builder crafting intelligent systems.">
+  <meta property="twitter:image" content="assets/images/og-image.jpg">
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <!-- Fonts & Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="css/style.css">
 
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo">
-        <a href="index.html">Nihar</a>
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nihar GNV",
+      "jobTitle": "AI Engineer & Full Stack Developer",
+      "url": "https://gnv-nihar.github.io",
+      "sameAs": [
+        "https://github.com/gnv-nihar",
+        "https://linkedin.com/in/nihar-gnv"
+      ]
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- Header -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo" id="logo-link">
+        Nihar GNV
+        <span class="logo-dot"></span>
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#videos" class="nav-link">Videos</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn-icon" id="theme-toggle" aria-label="Toggle dark/light theme">
+          <i class="fas fa-sun" id="theme-icon-sun"></i>
+          <i class="fas fa-moon" id="theme-icon-moon" style="display: none;"></i>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#proj">Projects</a></li>
-        <li><a href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}">Contact</a></li>
-      </ul>
-    </nav>
+    </div>
+  </header>
 
-   <!-- Mobile Navbar -->
-    <nav class="navbar-phone">
-        <div class="logo">
-            <a href="#">Nihar</a>
+  <!-- Ambient Glow Blocks -->
+  <div class="ambient-glow" style="top: 10%; left: -5%;"></div>
+  <div class="ambient-glow" style="top: 40%; right: -5%;"></div>
+  <div class="ambient-glow" style="bottom: 10%; left: 10%;"></div>
+
+  <!-- Dynamic Content Container -->
+  <main id="main-content">
+    
+    <!-- Hero Section Placeholder -->
+    <section id="hero" class="hero-section section"></section>
+
+    <!-- About Section Placeholder -->
+    <section id="about" class="section"></section>
+
+    <!-- Skills Section Placeholder -->
+    <section id="skills" class="section"></section>
+
+    <!-- Projects Section Placeholder -->
+    <section id="projects" class="section"></section>
+
+    <!-- Experience Section Placeholder -->
+    <section id="experience" class="section"></section>
+
+    <!-- Certifications Section Placeholder -->
+    <section id="certifications" class="section"></section>
+
+    <!-- Videos Section Placeholder -->
+    <section id="videos" class="section"></section>
+
+    <!-- Coding Profiles, Achievements Placeholder -->
+    <section id="achievements" class="section"></section>
+
+    <!-- Custom Sections Builder Hook -->
+    <div id="custom-sections-container"></div>
+
+    <!-- Contact Section Placeholder -->
+    <section id="contact" class="section"></section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <a href="#" class="logo">Nihar GNV<span class="logo-dot"></span></a>
+        <div class="footer-socials" id="footer-socials">
+          <!-- Dynamic Social Links -->
         </div>
-        <span class="material-symbols-outlined hamburger" onclick="toggleMenu()">menu</span>
-        <ul class="nav-links-phone">
-            <li><a href="./" onclick="toggleMenu()">Home</a></li>
-            <li><a href="#proj" onclick="toggleMenu()">Projects</a></li>
-            <li><a href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}" onclick="toggleMenu()">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="hero">
-      <div class="hero-img">
-        <img src="pic-2.jpg" alt="" />
       </div>
-      <div class="hero-txt">
-        <h1 class="head-txt">Hi, I'm Nihar GNV</h1>
-        <p class="roles">Developer | Designer | Learner</p>
-        <p class="mail"><a href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}">nihargnv@gmail.com</a></p>
-        <p class="description">
-          Hey, I'm Nihar. I'm a passionate learner and developer who's genuinely
-          curious about how things work and how to make them better. I love
-          building things that solve real-world problems in a practical way. I learn by diving into projects, experimenting and .
-        </p>
-
-        <div class="social-links">
-          
-              <a href="https://www.linkedin.com/in/gogineni-naga-venkata-nihar-chowdary-b51552277/" target="_blank"
-                ><i class="fa-brands fa-linkedin"></i
-              ></a>
-              <a href="https://github.com/nihargnv" target="_blank"><i class="fa-brands fa-github"></i></a>
-              
-              <a href="https://www.youtube.com/@its_nihar" target="_blank"
-                ><i class="fa-brands fa-youtube"></i
-              ></a>
-
-              <a href="https://x.com/nihargnv" target="_blank"
-                ><i class="fa-brands fa-x-twitter"></i
-              ></a>
-
-              <a href="https://www.instagram.com/nihar.g.n.v/profilecard/?igsh=MWw5MTg0enAyNnF1ZQ==" target="_blank"
-                ><i class="fa-brands fa-instagram"></i
-              ></a>
-              
-              
-        </div>
-        <a class="material-symbols-outlined" id="more_btn" href="#edu">
-          keyboard_double_arrow_down
-        </a>
-      </div>
-    </section>
-
-    <section class="education-section" id="edu">
-      <div class="education-container">
-        <h2 class="education-title">Education Qualifications</h2>
-        <div class="timeline">
-          <div class="education-item left">
-            <div class="education-content">
-              <h3>Bachelor of Technology in Computer Science(AI&ML)</h3>
-              <p>RVR & JC College of Enginnering, Guntur.</p>
-              <p>2023 - 2027(present)</p>
-              <p>GPA: 8.7/10</p>
-            </div>
-          </div>
-          <div class="education-item right">
-            <div class="education-content">
-              <h3>Intermediate(BIE,AP)</h3>
-              <p>DNM Junior College, Inkollu.</p>
-              <p>2021 - 2023</p>
-              <p>Percentage: 94.3%</p>
-            </div>
-          </div>
-          <div class="education-item left">
-            <div class="education-content">
-              <h3>SSC (Schooling)</h3>
-              <p>Bhashyam School, Inkollu.</p>
-              <p>2016 - 2021</p>
-              <p>GPA: 10.0</p>
-            </div>
-          </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="current-year">2026</span> Nihar GNV. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="admin.html">CMS Dashboard</a>
+          <a href="sitemap.xml">Sitemap</a>
         </div>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <section class="skills">
-      <div class="skills-container">
-        <h2 class="education-title">Skills</h2>
-        <div id="skills-list">
-          <!-- <div class="skill">
-              <div class="skill-fill" data-progress="85"></div>
-              <div class="skill-name" title="Intermediate">Python</div>
-          </div> -->
-        </div>
-      </div>
-    </section>
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox">
+    <span class="lightbox-close" id="lightbox-close"><i class="fas fa-times"></i></span>
+    <span class="lightbox-nav lightbox-prev" id="lightbox-prev"><i class="fas fa-chevron-left"></i></span>
+    <div class="lightbox-content-wrapper">
+      <img src="" alt="" class="lightbox-img" id="lightbox-img">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+    <span class="lightbox-nav lightbox-next" id="lightbox-next"><i class="fas fa-chevron-right"></i></span>
+  </div>
 
-    <section class="projects" id="proj">
-      <h2 class="education-title">Projects</h2>
-      <div class="proj-set" id="projects-list">
-        <!-- <a href="#" class="proj-link">
-          <div class="proj-card">
-            <h2 class="proj-title">
-              NetraDarshak - AI Powered Solution for Blind.
-            </h2>
-            <ul class="proj-desc">
-              <li>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              </li>
-              <li>two</li>
-            </ul>
-            <p class="proj-tech">Technologies: Python, Django, React</p>
-          </div>
-        </a> -->   
-    </section>
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
 
-    <section class="blogs">
-      <h2 class="education-title">Blogs</h2>
-      <div class="blog-set" id="blogs-list">
-        <!-- <a href="#" class="blog-link">
-          <div class="blog-card">
-            <h2 class="blog-title">Understanding Neural Networks</h2>
-            <p class="blog-desc">
-              A deep dive into the architecture and functioning of neural
-              networks, exploring their applications in AI.
-            </p>
-            <p class="blog-date">Published on: 2023-10-01</p>
-          </div>
-        </a> -->
-      </div>
-    </section>
-
-    <footer>
-      <div class="quick-links">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="./">Home</a></li>
-          <li><a href="#edu">Education</a></li>
-          <li><a href="#proj">Projects</a></li>
-          <li><a href="mailto:nihargnv@gmail.com?subject=vw:Regarding {your subject}">Contact Me</a></li>
-        </ul>
-      </div>
-      <div class="footer-content">
-        <p>&copy; 2025 Nihar GNV. All rights reserved.</p>
-        <p>
-          Made with <span class="heart">❤️</span> by Nihar.
-        </p>
-      </div>
-    </footer>
-
-   
-    <script src="database.js"></script>
-    <script>
-
-      function toggleMenu () {
-        const navLinks   = document.querySelector('.nav-links-phone');
-        const hamburger  = document.querySelector('.hamburger');
-
-        navLinks.classList.toggle('active');
-
-        // swap icon text & animate
-        const isOpen = navLinks.classList.contains('active');
-        hamburger.textContent = isOpen ? 'close' : 'menu';
-        hamburger.classList.toggle('open', isOpen);
-      }
-
-
-      document.querySelectorAll(".education-content").forEach((item) => {
-        item.addEventListener("mouseenter", () => {
-          item.style.transform = "scale(1.08)";
-          item.style.transition = "transform 0.3s ease";
-        });
-        item.addEventListener("mouseleave", () => {
-          item.style.transform = "scale(1)";
-        });
-      });
-
-      function populateSkills() {
-        const skillsList = document.getElementById("skills-list");
-        skillsList.innerHTML = ""; // Clear existing content
-
-        skills.forEach((skill) => {
-          const skillDiv = document.createElement("div");
-          skillDiv.className = "skill";
-
-          const skillFill = document.createElement("div");
-          skillFill.className = "skill-fill";
-          skillFill.setAttribute("data-progress", skill.progress);
-
-          const skillName = document.createElement("div");
-          skillName.className = "skill-name";
-          skillName.setAttribute("title", skill.title);
-          skillName.textContent = skill.name;
-
-          skillDiv.appendChild(skillFill);
-          skillDiv.appendChild(skillName);
-          skillsList.appendChild(skillDiv);
-        });
-
-        // Trigger fill animation after DOM update
-        const skillFills = document.querySelectorAll(".skill-fill");
-        skillFills.forEach((fill) => {
-          const progress = fill.getAttribute("data-progress");
-          setTimeout(() => {
-            fill.style.width = `${progress}%`;
-          }, 100);
-        });
-      }
-
-      function populateProjects() {
-            const projectsList = document.getElementById('projects-list');
-            projectsList.innerHTML = ''; // Clear existing content
-
-            projects.forEach(project => {
-                const projLink = document.createElement('a');
-                projLink.className = 'proj-link';
-                projLink.href = project.link;
-
-                const projCard = document.createElement('div');
-                projCard.className = 'proj-card';
-
-                const projTitle = document.createElement('h2');
-                projTitle.className = 'proj-title';
-                projTitle.textContent = project.title;
-
-                const projDesc = document.createElement('ul');
-                projDesc.className = 'proj-desc';
-                project.desc.forEach(descItem => {
-                    const li = document.createElement('li');
-                    li.textContent = descItem;
-                    projDesc.appendChild(li);
-                });
-
-                const projTech = document.createElement('p');
-                projTech.className = 'proj-tech'; 
-                projTech.textContent = `Technologies: ${project.tech.join(', ')}`;
-
-                projCard.appendChild(projTitle);
-                projCard.appendChild(projDesc);
-                projCard.appendChild(projTech);
-                projLink.appendChild(projCard);
-                projectsList.appendChild(projLink);
-            });
-      }
-      function populateBlogs() {
-            const blogsList = document.getElementById('blogs-list');
-            blogsList.innerHTML = ''; // Clear existing content
-
-            blogs.forEach(blog => {
-                const blogLink = document.createElement('a');
-                blogLink.className = 'blog-link';
-                blogLink.href = blog.link;
-
-                const blogCard = document.createElement('div');
-                blogCard.className = 'blog-card';
-
-                const blogTitle = document.createElement('h2');
-                blogTitle.className = 'blog-title';
-                blogTitle.textContent = blog.title;
-
-                const blogDesc = document.createElement('p');
-                blogDesc.className = 'blog-desc';
-                blogDesc.textContent = blog.desc;
-
-                const blogDate = document.createElement('p');
-                blogDate.className = 'blog-date';
-                blogDate.textContent = `Published on: ${blog.date}`;
-
-                const blogReadMore = document.createElement('a');
-                blogReadMore.className = 'blog-read-more';
-                blogReadMore.href = blog.link;
-                blogReadMore.textContent = 'Read More';
-
-                blogCard.appendChild(blogTitle);
-                blogCard.appendChild(blogDesc);
-                blogCard.appendChild(blogDate);
-                blogCard.appendChild(blogReadMore);
-                blogLink.appendChild(blogCard);
-                blogsList.appendChild(blogLink);
-            });
-      }
-
-        
-
-      function initApp() {
-        populateSkills();
-        populateProjects();
-        populateBlogs();
-      }
-
-      document.addEventListener("DOMContentLoaded", initApp);
-    </script>
-  </body>
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/app.js"></script>
+  <script type="module" src="js/renderer.js"></script>
+  <script>
+    // Initialize standard rendering
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load data and render page
+      initPageRenderer();
+    });
+  </script>
+</body>
 </html>
